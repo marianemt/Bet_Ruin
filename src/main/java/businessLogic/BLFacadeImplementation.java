@@ -181,7 +181,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		return em;
     }
 
-
+    @WebMethod
 	public Erabiltzaile getUser(Erabiltzaile user) {
 		DataAccess dBManager = new DataAccess();
     	Erabiltzaile em = dBManager.getUser(user);
@@ -189,6 +189,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		return em;
 	}
 	
+    @WebMethod
 	public void erreplikatu(Erabiltzaile user, String posta) throws ErabiltzaileNoExist {
 		DataAccess dBManager = new DataAccess();
     	dBManager.erreplikatu(user, posta);
