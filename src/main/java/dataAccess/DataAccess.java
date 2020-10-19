@@ -41,10 +41,7 @@ public class DataAccess  {
 	protected static EntityManager  db;
 	protected static EntityManagerFactory emf;
 	private Vector<Erabiltzaile>recurrent=new Vector<Erabiltzaile>();
-
-
 	ConfigXML c;
-
 	public DataAccess(boolean initializeMode)  {
 		
 		c=ConfigXML.getInstance();
@@ -299,6 +296,31 @@ public class DataAccess  {
 		
 	}
 	
+public void open(boolean initializeMode){
+		
+		System.out.println("Opening DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" getDatabBaseOpenMode: "+c.getDataBaseOpenMode());
+
+		String fileName=c.getDbFilename();
+		if (initializeMode) {
+			fileName=fileName+";drop";
+			System.out.println("Deleting the DataBase");
+		}
+		
+		if (c.isDatabaseLocal()) {
+			  emf = Persistence.createEntityManagerFactory("objectdb:"+fileName);
+			  db = emf.createEntityManager();
+		} else {
+			Map<String, String> properties = new HashMap<String, String>();
+			  properties.put("javax.persistence.jdbc.user", c.getUser());
+			  properties.put("javax.persistence.jdbc.password", c.getPassword());
+
+			  emf = Persistence.createEntityManagerFactory("objectdb://"+c.getDatabaseNode()+":"+c.getDatabasePort()+"/"+fileName, properties);
+
+			  db = emf.createEntityManager();
+    	   }
+		
+	}
+	
 	public int storeEvent(String deskripzioa, Date data) {
 		
 		TypedQuery<Event> query;
@@ -440,6 +462,18 @@ public class DataAccess  {
 		}
 		
 	}
+	
+	public boolean removeUser(Erabiltzaile e) {
+		System.out.println(">> DataAccessTest: removeErabiltzaile");
+		Erabiltzaile e1 = db.find(Erabiltzaile.class, e.getPosta());
+		if (e1!=null) {
+			db.getTransaction().begin();
+			db.remove(e1);
+			db.getTransaction().commit();
+			return true;
+		} else 
+		return false;
+    }
 		
 	public void close(){
 		db.close();

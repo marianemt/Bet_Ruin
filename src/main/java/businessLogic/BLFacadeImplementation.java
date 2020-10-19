@@ -27,20 +27,35 @@ import exceptions.QuestionAlreadyExist;
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
-
+	DataAccess dbManager;
+	
 	public BLFacadeImplementation()  {		
 		System.out.println("Creating BLFacadeImplementation instance");
 		ConfigXML c=ConfigXML.getInstance();
 		
 		if (c.getDataBaseOpenMode().equals("initialize")) {
-			DataAccess dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
+			dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 			dbManager.initializeDB();
 			dbManager.close();
 			}
-		
+	
 	}
 	
+	public BLFacadeImplementation(DataAccess da)  {
+		
+		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
+		ConfigXML c=ConfigXML.getInstance();
+		
+		if (c.getDataBaseOpenMode().equals("initialize")) {
+			da.open(true);
+			da.initializeDB();
+			da.close();
 
+		}
+		dbManager=da;		
+	}
+	
+	
 	/**
 	 * This method creates a question for an event, with a question text and the minimum bet
 	 * 
@@ -55,7 +70,7 @@ public class BLFacadeImplementation  implements BLFacade {
    public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
 	   
 	    //The minimum bed must be greater than 0
-	    DataAccess dBManager=new DataAccess();
+	   dbManager.open(false);
 		Question qry=null;
 		
 	    
@@ -63,9 +78,9 @@ public class BLFacadeImplementation  implements BLFacade {
 			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
 		
-		 qry=dBManager.createQuestion(event,question,betMinimum);		
+		 qry=dbManager.createQuestion(event,question,betMinimum);		
 
-		dBManager.close();
+		dbManager.close();
 		
 		return qry;
    };
@@ -78,7 +93,8 @@ public class BLFacadeImplementation  implements BLFacade {
 	 */
     @WebMethod	
 	public Vector<Event> getEvents(Date date)  {
-		DataAccess dbManager=new DataAccess();
+    	dbManager.open(false);
+
 		Vector<Event>  events=dbManager.getEvents(date);
 		dbManager.close();
 		return events;
@@ -92,7 +108,8 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return collection of dates
 	 */
 	@WebMethod public Vector<Date> getEventsMonth(Date date) {
-		DataAccess dbManager=new DataAccess();
+		dbManager.open(false);
+
 		Vector<Date>  dates=dbManager.getEventsMonth(date);
 		dbManager.close();
 		return dates;
@@ -107,93 +124,104 @@ public class BLFacadeImplementation  implements BLFacade {
 	 */	
     @WebMethod	
 	 public void initializeBD(){
-		DataAccess dBManager=new DataAccess();
-		dBManager.initializeDB();
-		dBManager.close();
+    	dbManager.open(false);
+
+		dbManager.initializeDB();
+		dbManager.close();
 	}
     
     @WebMethod
     public Erabiltzaile isLogin(String posta, String pasahitza) {
-    	DataAccess dBManager = new DataAccess();
-    	Erabiltzaile log = dBManager.isLogin(posta, pasahitza);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	Erabiltzaile log = dbManager.isLogin(posta, pasahitza);
+		dbManager.close();
 		return log;
     }
     
     @WebMethod
     public int storeUser(Erabiltzaile newUser) {
-    	DataAccess dBManager = new DataAccess();
-    	int erreg = dBManager.storeUser(newUser);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	int erreg = dbManager.storeUser(newUser);
+		dbManager.close();
 		return erreg;
     }
     
     @WebMethod
     public int storeEvent(String deskripzioa, Date data) {
-    	DataAccess dBManager = new DataAccess();
-    	int event = dBManager.storeEvent(deskripzioa, data);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	int event = dbManager.storeEvent(deskripzioa, data);
+		dbManager.close();
 		return event;
     }
     
     @WebMethod 
     public Kuota createKuota(Question question, String deskripzioa, double pronostikoa) throws KuotaAlreadyExist{
     	 //The minimum bed must be greater than 0
-	    DataAccess dBManager=new DataAccess();
+    	dbManager.open(false);
+
 		Kuota k=null;
 		
-		 k=dBManager.sortuKuota(question, deskripzioa, pronostikoa);		
+		 k=dbManager.sortuKuota(question, deskripzioa, pronostikoa);		
 
-		dBManager.close();
+		dbManager.close();
 		
 		return k;
     };
     @WebMethod
     public Apustua sortuApustua(double zenbatekoa, Vector<Kuota> kuota, Erabiltzaile user, Date data, Date firstEventDate) throws DirurikEZ{
     	
-    	DataAccess dBManager=new DataAccess();
+    	dbManager.open(false);
+
     	Apustua ap=null;
  		
- 		 ap=dBManager.sortuApustua(zenbatekoa, kuota, user, data, firstEventDate);
+ 		 ap=dbManager.sortuApustua(zenbatekoa, kuota, user, data, firstEventDate);
 
- 		dBManager.close();
+ 		dbManager.close();
  		
  		return ap;
     };
     @WebMethod
     public void updateQuestion(Integer ID, String result) throws EmaitzaExist {
-    	DataAccess dBManager = new DataAccess();
-    	dBManager.updateQuestion(ID, result);;
-		dBManager.close();
+    	dbManager.open(false);
+
+    	 dbManager.updateQuestion(ID, result);;
+    	 dbManager.close();
     }
     @WebMethod
     public void updateUser(Erabiltzaile user, double dirua, Date data) {
-    	DataAccess dBManager = new DataAccess();
-    	dBManager.updateUser(user, dirua, data);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	 dbManager.updateUser(user, dirua, data);
+    	 dbManager.close();
     }
 
     @WebMethod
     public	boolean	removeApustua (Mugimendu mu, Erabiltzaile user) {
-    	DataAccess dBManager = new DataAccess();
-    	boolean em = dBManager.removeApustua(mu, user);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	boolean em = dbManager.removeApustua(mu, user);
+    	dbManager.close();
 		return em;
     }
 
     @WebMethod
 	public Erabiltzaile getUser(Erabiltzaile user) {
-		DataAccess dBManager = new DataAccess();
-    	Erabiltzaile em = dBManager.getUser(user);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	Erabiltzaile em = dbManager.getUser(user);
+    	dbManager.close();
 		return em;
 	}
 	
     @WebMethod
 	public void erreplikatu(Erabiltzaile user, String posta) throws ErabiltzaileNoExist {
-		DataAccess dBManager = new DataAccess();
-    	dBManager.erreplikatu(user, posta);
-		dBManager.close();
+    	dbManager.open(false);
+
+    	dbManager.erreplikatu(user, posta);
+		dbManager.close();
 	}
 	
 }
