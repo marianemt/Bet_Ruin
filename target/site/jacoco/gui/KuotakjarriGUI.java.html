@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KuotakjarriGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">KuotakjarriGUI.java</span></div><h1>KuotakjarriGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import businessLogic.BLFacade;
+import configuration.UtilDate;
+
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+import com.toedter.calendar.JCalendar;
+
+import domain.Question;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.beans.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import javax.swing.table.DefaultTableModel;
+
+
+public class KuotakjarriGUI extends JFrame {
+	private static final long serialVersionUID = 1L;
+
+<span class="nc" id="L25">	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EventDate&quot;));</span>
+<span class="nc" id="L26">	private final JLabel jLabelQueries = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Queries&quot;)); </span>
+<span class="nc" id="L27">	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Events&quot;)); </span>
+
+<span class="nc" id="L29">	private JButton jButtonClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;));</span>
+
+	// Code for JCalendar
+<span class="nc" id="L32">	private JCalendar jCalendar1 = new JCalendar();</span>
+<span class="nc" id="L33">	private Calendar calendarMio = null;</span>
+<span class="nc" id="L34">	private JScrollPane scrollPaneEvents = new JScrollPane();</span>
+<span class="nc" id="L35">	private JScrollPane scrollPaneQueries = new JScrollPane();</span>
+<span class="nc" id="L36">	private JScrollPane scrollPaneKuotak = new JScrollPane();</span>
+
+<span class="nc" id="L38">	private JTable tableEvents= new JTable();</span>
+<span class="nc" id="L39">	private JTable tableQueries = new JTable();</span>
+
+	private DefaultTableModel tableModelEvents;
+	private DefaultTableModel tableModelQueries;
+
+	
+<span class="nc" id="L45">	private String[] columnNamesEvents = new String[] {</span>
+<span class="nc" id="L46">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EventN&quot;), </span>
+<span class="nc" id="L47">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Event&quot;), </span>
+
+	};
+<span class="nc" id="L50">	private String[] columnNamesQueries = new String[] {</span>
+<span class="nc" id="L51">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;QueryN&quot;), </span>
+<span class="nc" id="L52">			ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Query&quot;)</span>
+
+	};
+	private JTextField txtDeskripzioa;
+	private JTextField txtPronostikoa;
+
+
+	public KuotakjarriGUI()
+<span class="nc" id="L60">	{</span>
+		try
+		{
+<span class="nc" id="L63">			jbInit();</span>
+		}
+<span class="nc" id="L65">		catch(Exception e)</span>
+		{
+<span class="nc" id="L67">			e.printStackTrace();</span>
+<span class="nc" id="L68">		}</span>
+<span class="nc" id="L69">	}</span>
+
+	
+	private void jbInit() throws Exception
+	{
+
+<span class="nc" id="L75">		this.getContentPane().setLayout(null);</span>
+<span class="nc" id="L76">		this.setSize(new Dimension(778, 592));</span>
+<span class="nc" id="L77">		this.setTitle(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;QueryQueries&quot;));</span>
+
+<span class="nc" id="L79">		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));</span>
+<span class="nc" id="L80">		jLabelQueries.setBounds(40, 222, 406, 14);</span>
+<span class="nc" id="L81">		jLabelEvents.setBounds(295, 19, 259, 16);</span>
+
+<span class="nc" id="L83">		this.getContentPane().add(jLabelEventDate, null);</span>
+<span class="nc" id="L84">		this.getContentPane().add(jLabelQueries);</span>
+<span class="nc" id="L85">		this.getContentPane().add(jLabelEvents);</span>
+
+<span class="nc" id="L87">		jButtonClose.setBounds(new Rectangle(288, 490, 130, 30));</span>
+
+<span class="nc" id="L89">		jButtonClose.addActionListener(new ActionListener()</span>
+<span class="nc" id="L90">		{</span>
+			public void actionPerformed(ActionEvent e)
+			{
+<span class="nc" id="L93">				jButton2_actionPerformed(e);</span>
+<span class="nc" id="L94">			}</span>
+		});
+
+<span class="nc" id="L97">		this.getContentPane().add(jButtonClose, null);</span>
+
+
+<span class="nc" id="L100">		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));</span>
+
+
+		// Code for JCalendar
+<span class="nc" id="L104">		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener()</span>
+<span class="nc" id="L105">		{</span>
+			public void propertyChange(PropertyChangeEvent propertychangeevent)
+			{
+
+<span class="nc bnc" id="L109" title="All 2 branches missed.">				if (propertychangeevent.getPropertyName().equals(&quot;locale&quot;))</span>
+				{
+<span class="nc" id="L111">					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());</span>
+				}
+<span class="nc bnc" id="L113" title="All 2 branches missed.">				else if (propertychangeevent.getPropertyName().equals(&quot;calendar&quot;))</span>
+				{
+<span class="nc" id="L115">					calendarMio = (Calendar) propertychangeevent.getNewValue();</span>
+<span class="nc" id="L116">					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());</span>
+<span class="nc" id="L117">					jCalendar1.setCalendar(calendarMio);</span>
+<span class="nc" id="L118">					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));</span>
+
+
+
+					try {
+<span class="nc" id="L123">						tableModelEvents.setDataVector(null, columnNamesEvents);</span>
+<span class="nc" id="L124">						tableModelEvents.setColumnCount(3); // another column added to allocate ev objects</span>
+
+<span class="nc" id="L126">						BLFacade facade=MainGUI.getBusinessLogic();</span>
+
+<span class="nc" id="L128">						Vector&lt;domain.Event&gt; events=facade.getEvents(firstDay);</span>
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">						if (events.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoEvents&quot;)+ &quot;: &quot;+dateformat1.format(calendarMio.getTime()));</span>
+<span class="nc" id="L131">						else jLabelEvents.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Events&quot;)+ &quot;: &quot;+dateformat1.format(calendarMio.getTime()));</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">						for (domain.Event ev:events){</span>
+<span class="nc" id="L133">							Vector&lt;Object&gt; row = new Vector&lt;Object&gt;();</span>
+
+<span class="nc" id="L135">							System.out.println(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Event&quot;)+ev);</span>
+
+<span class="nc" id="L137">							row.add(ev.getEventNumber());</span>
+<span class="nc" id="L138">							row.add(ev.getDescription());</span>
+<span class="nc" id="L139">							row.add(ev); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)</span>
+<span class="nc" id="L140">							tableModelEvents.addRow(row);		</span>
+<span class="nc" id="L141">						}</span>
+<span class="nc" id="L142">						tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L143">						tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);</span>
+<span class="nc" id="L144">						tableEvents.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable</span>
+<span class="nc" id="L145">					} catch (Exception e1) {</span>
+
+<span class="nc" id="L147">						jLabelQueries.setText(e1.getMessage());</span>
+<span class="nc" id="L148">					}</span>
+
+				}
+<span class="nc" id="L151">				CreateQuestionGUI.paintDaysWithEvents(jCalendar1);</span>
+<span class="nc" id="L152">			} </span>
+		});
+
+<span class="nc" id="L155">		this.getContentPane().add(jCalendar1, null);</span>
+		
+<span class="nc" id="L157">		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));</span>
+<span class="nc" id="L158">		scrollPaneQueries.setBounds(new Rectangle(40, 252, 406, 116));</span>
+<span class="nc" id="L159">		scrollPaneKuotak.setBounds(new Rectangle(446, 252, 295, 116));</span>
+
+<span class="nc" id="L161">		tableEvents.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L164">				int i=tableEvents.getSelectedRow();</span>
+<span class="nc" id="L165">				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object</span>
+<span class="nc" id="L166">				Vector&lt;Question&gt; queries=ev.getQuestions();</span>
+
+<span class="nc" id="L168">				tableModelQueries.setDataVector(null, columnNamesQueries);</span>
+<span class="nc" id="L169">				tableModelQueries.setColumnCount(3); // question obj aukeratu ahal izateko</span>
+
+<span class="nc bnc" id="L171" title="All 2 branches missed.">				if (queries.isEmpty())</span>
+<span class="nc" id="L172">					jLabelQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NoQueries&quot;)+&quot;: &quot;+ev.getDescription());</span>
+				else 
+<span class="nc" id="L174">					jLabelQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SelectedEvent&quot;)+&quot; &quot;+ev.getDescription());</span>
+
+<span class="nc bnc" id="L176" title="All 2 branches missed.">				for (domain.Question q:queries){</span>
+<span class="nc" id="L177">					Vector&lt;Object&gt; row = new Vector&lt;Object&gt;();</span>
+
+<span class="nc" id="L179">					row.add(q.getQuestionNumber());</span>
+<span class="nc" id="L180">					row.add(q.getQuestion());</span>
+<span class="nc" id="L181">					row.add(q);</span>
+<span class="nc" id="L182">					tableModelQueries.addRow(row);	</span>
+<span class="nc" id="L183">				}</span>
+<span class="nc" id="L184">				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L185">				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);</span>
+<span class="nc" id="L186">				tableQueries.getColumnModel().removeColumn(tableQueries.getColumnModel().getColumn(2)); // not shown in JTable</span>
+<span class="nc" id="L187">			}</span>
+		});
+
+<span class="nc" id="L190">		scrollPaneEvents.setViewportView(tableEvents);</span>
+<span class="nc" id="L191">		tableModelEvents = new DefaultTableModel(null, columnNamesEvents);</span>
+
+<span class="nc" id="L193">		tableEvents.setModel(tableModelEvents);</span>
+<span class="nc" id="L194">		tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L195">		tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);</span>
+
+
+<span class="nc" id="L198">		scrollPaneQueries.setViewportView(tableQueries);</span>
+<span class="nc" id="L199">		tableModelQueries = new DefaultTableModel(null, columnNamesQueries);</span>
+
+<span class="nc" id="L201">		tableQueries.setModel(tableModelQueries);</span>
+<span class="nc" id="L202">		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);</span>
+<span class="nc" id="L203">		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);</span>
+		
+<span class="nc" id="L205">		this.getContentPane().add(scrollPaneEvents, null);</span>
+<span class="nc" id="L206">		this.getContentPane().add(scrollPaneQueries, null);</span>
+		
+<span class="nc" id="L208">		txtDeskripzioa = new JTextField();</span>
+//		txtDeskripzioa.setText(&quot;Deskripzioa&quot;);
+<span class="nc" id="L210">		txtDeskripzioa.setBounds(345, 384, 146, 26);</span>
+<span class="nc" id="L211">		getContentPane().add(txtDeskripzioa);</span>
+<span class="nc" id="L212">		txtDeskripzioa.setColumns(10);</span>
+		
+<span class="nc" id="L214">		txtPronostikoa = new JTextField();</span>
+//		txtPronostikoa.setText(&quot;Pronostikoa&quot;);
+<span class="nc" id="L216">		txtPronostikoa.setBounds(345, 442, 146, 26);</span>
+<span class="nc" id="L217">		getContentPane().add(txtPronostikoa);</span>
+<span class="nc" id="L218">		txtPronostikoa.setColumns(10);</span>
+		
+<span class="nc" id="L220">		JLabel lblDeskripzioa = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Description&quot;));</span>
+<span class="nc" id="L221">		lblDeskripzioa.setBounds(130, 384, 110, 20);</span>
+<span class="nc" id="L222">		getContentPane().add(lblDeskripzioa);</span>
+		
+<span class="nc" id="L224">		JLabel lblPronostikoa = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Pronostic&quot;));</span>
+<span class="nc" id="L225">		lblPronostikoa.setBounds(130, 445, 110, 20);</span>
+<span class="nc" id="L226">		getContentPane().add(lblPronostikoa);</span>
+		
+<span class="nc" id="L228">		JButton btnAddKuota = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;AddFee&quot;));</span>
+<span class="nc" id="L229">		btnAddKuota.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+				
+<span class="nc" id="L232">				int j=tableEvents.getSelectedRow();</span>
+<span class="nc" id="L233">				domain.Event ev=(domain.Event) tableModelEvents.getValueAt(j,2);</span>
+				
+<span class="nc bnc" id="L235" title="All 2 branches missed.">				if(isExpire(ev.getEventDate())) {</span>
+<span class="nc" id="L236">					jLabelQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;FeeProblem&quot;));</span>
+				}
+				else {
+<span class="nc" id="L239">					int i=tableQueries.getSelectedRow();</span>
+<span class="nc" id="L240">					domain.Question question = (domain.Question)tableModelQueries.getValueAt(i,2);</span>
+<span class="nc" id="L241">					String deskripzioa= txtDeskripzioa.getText();</span>
+<span class="nc" id="L242">					double pronostikoa= Double.parseDouble(txtPronostikoa.getText());</span>
+				
+					try {
+					
+<span class="nc" id="L246">						BLFacade managerDB = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L247">						managerDB.createKuota(question, deskripzioa, pronostikoa);</span>
+					
+<span class="nc" id="L249">						jLabelQueries.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CreateFee&quot;));</span>
+<span class="nc" id="L250">					} catch (Exception e4) {</span>
+<span class="nc" id="L251">						jLabelQueries.setText(e4.getMessage());</span>
+<span class="nc" id="L252">					}</span>
+				}
+<span class="nc" id="L254">			}</span>
+		});
+<span class="nc" id="L256">		btnAddKuota.setBounds(140, 491, 115, 29);</span>
+<span class="nc" id="L257">		getContentPane().add(btnAddKuota);</span>
+		
+		
+
+<span class="nc" id="L261">	}</span>
+
+	private void jButton2_actionPerformed(ActionEvent e) {
+<span class="nc" id="L264">		this.setVisible(false);</span>
+<span class="nc" id="L265">	}</span>
+	
+	private boolean isExpire(Date date) {
+	    
+<span class="nc" id="L269">        SimpleDateFormat sdf =  new SimpleDateFormat(&quot;MMM-dd-yyyy hh:mm:ss a&quot;); // Jan-20-2015 1:30:55 PM</span>
+<span class="nc" id="L270">           Date d=null;</span>
+<span class="nc" id="L271">           Date d1=null;</span>
+<span class="nc" id="L272">        String today=   getToday(&quot;MMM-dd-yyyy hh:mm:ss a&quot;);</span>
+        try {
+            //System.out.println(&quot;expdate&gt;&gt; &quot;+date);
+            //System.out.println(&quot;today&gt;&gt; &quot;+today+&quot;\n\n&quot;);
+<span class="nc" id="L276">            d=date;</span>
+            try {
+<span class="nc" id="L278">				d1 = sdf.parse(today);</span>
+<span class="nc" id="L279">			} catch (java.text.ParseException e) {</span>
+				// TODO Auto-generated catch block
+<span class="nc" id="L281">				e.printStackTrace();</span>
+<span class="nc" id="L282">			}</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            if(d1.compareTo(d) &lt;0){// not expired</span>
+<span class="nc" id="L284">                return false;</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">            }else if(d.compareTo(d1)==0){// both date are same</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">                        if(d.getTime() &lt; d1.getTime()){// not expired</span>
+<span class="nc" id="L287">                            return false;</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">                        }else if(d.getTime() == d1.getTime()){//expired</span>
+<span class="nc" id="L289">                            return true;</span>
+                        }else{//expired
+<span class="nc" id="L291">                            return true;</span>
+                        }
+            }else{//expired
+<span class="nc" id="L294">                return true;</span>
+            }
+<span class="nc" id="L296">        } catch (ParseException e) {</span>
+<span class="nc" id="L297">            e.printStackTrace();                    </span>
+<span class="nc" id="L298">            return false;</span>
+        }
+
+	}
+
+	public static String getToday(String format){
+<span class="nc" id="L304">		Date date = new Date();</span>
+<span class="nc" id="L305">		return new SimpleDateFormat(format).format(date);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

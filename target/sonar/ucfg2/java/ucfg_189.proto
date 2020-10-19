@@ -1,0 +1,82 @@
+
+TbusinessLogic.BLFacadeImplementation#storeEvent(Ljava/lang/String;Ljava/util/Date;)Ia
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaò ò("startingBlock*ì
+startingBlocka
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaò ò(8¥
+±
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaó ó(
+%6"
+__annotate*
+javax.jws.WebMethod*!
+
+deskripzioajava.lang.Stringù
+ö
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaò! ò(,
+deskripzioajava.lang.String"__annotation*
+
+%6´
+®
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaó ó(
+%7"
+__annotate*
+javax.jws.WebMethod*
+
+datajava.util.Dateî
+ë
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaò3 ò(7
+datajava.util.Date"__annotation*
+
+%7*
+1*Î
+1a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaô ô(¬
+ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaô ô(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager¬ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaô ô(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)¬
+ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaõ õ(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerƒ¡
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaõ õ(8	
+%3int"EdataAccess.DataAccess#storeEvent(Ljava/lang/String;Ljava/util/Date;)I*
+
+%2dataAccess.DataAccess*!
+
+deskripzioajava.lang.String*
+
+datajava.util.Date2.storeEvent(Ljava/lang/String;Ljava/util/Date;)¬
+ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaú ú(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager∫∑
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaú ú(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"k
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaù ù(
+"":
+deskripzioajava.lang.String:
+datajava.util.DateB(&
+$businessLogic.BLFacadeImplementation

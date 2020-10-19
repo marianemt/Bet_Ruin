@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>diruaGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">diruaGUI.java</span></div><h1>diruaGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+
+import businessLogic.BLFacade;
+import domain.Erabiltzaile;
+
+import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+public class diruaGUI extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Erabiltzaile logeatuta;
+	private JTextField textFieldDiru;
+	private JTextField textIzena;
+	private JTextField textTxartela;
+	private JTextField textHilabetea;
+	private JTextField textUrtea;
+	private JTextField textCVV;
+<span class="nc" id="L33">	private JLabel jLabelMezu = new JLabel(&quot; &quot;);</span>
+<span class="nc" id="L34">	private JLabel jLabelErrore = new JLabel(&quot; &quot;);</span>
+	private JButton btnSartu;
+	
+	public diruaGUI(Erabiltzaile logeatuta)
+<span class="nc" id="L38">	{</span>
+		try
+		{
+<span class="nc" id="L41">			this.logeatuta=logeatuta;</span>
+<span class="nc" id="L42">			jbInit();</span>
+		}
+<span class="nc" id="L44">		catch(Exception e)</span>
+		{
+<span class="nc" id="L46">			e.printStackTrace();</span>
+<span class="nc" id="L47">		}</span>
+<span class="nc" id="L48">	}</span>
+	private void jbInit() throws Exception{
+<span class="nc" id="L50">		getContentPane().setLayout(null);</span>
+<span class="nc" id="L51">		this.setSize(new Dimension(422, 297));</span>
+		
+<span class="nc" id="L53">		JLabel Kantitatea = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Money&quot;));</span>
+<span class="nc" id="L54">		Kantitatea.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="nc" id="L55">		Kantitatea.setBounds(26, 60, 192, 34);</span>
+<span class="nc" id="L56">		getContentPane().add(Kantitatea);</span>
+		
+<span class="nc" id="L58">		textFieldDiru = new JTextField();</span>
+<span class="nc" id="L59">		textFieldDiru.setBounds(251, 67, 86, 22);</span>
+<span class="nc" id="L60">		getContentPane().add(textFieldDiru);</span>
+<span class="nc" id="L61">		textFieldDiru.setColumns(10);</span>
+		
+<span class="nc" id="L63">		JLabel euro = new JLabel(&quot;\u20AC&quot;);</span>
+<span class="nc" id="L64">		euro.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L65">		euro.setBounds(349, 69, 56, 16);</span>
+<span class="nc" id="L66">		getContentPane().add(euro);</span>
+		
+<span class="nc" id="L68">		JLabel lblIzenabizena = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Name&quot;));</span>
+<span class="nc" id="L69">		lblIzenabizena.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="nc" id="L70">		lblIzenabizena.setBounds(27, 43, 127, 16);</span>
+<span class="nc" id="L71">		getContentPane().add(lblIzenabizena);</span>
+		
+<span class="nc" id="L73">		textIzena = new JTextField();</span>
+<span class="nc" id="L74">		textIzena.setColumns(10);</span>
+<span class="nc" id="L75">		textIzena.setBounds(132, 41, 240, 22);</span>
+<span class="nc" id="L76">		getContentPane().add(textIzena);</span>
+		
+<span class="nc" id="L78">		JLabel lblTxartelarenZenbakia = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Card&quot;));</span>
+<span class="nc" id="L79">		lblTxartelarenZenbakia.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="nc" id="L80">		lblTxartelarenZenbakia.setBounds(26, 98, 146, 16);</span>
+<span class="nc" id="L81">		getContentPane().add(lblTxartelarenZenbakia);</span>
+		
+<span class="nc" id="L83">		textTxartela = new JTextField();</span>
+<span class="nc" id="L84">		textTxartela.setColumns(10);</span>
+<span class="nc" id="L85">		textTxartela.setBounds(171, 96, 201, 22);</span>
+<span class="nc" id="L86">		getContentPane().add(textTxartela);</span>
+		
+<span class="nc" id="L88">		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Date&quot;));</span>
+<span class="nc" id="L89">		lblNewLabel.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 15));</span>
+<span class="nc" id="L90">		lblNewLabel.setBounds(26, 127, 42, 16);</span>
+<span class="nc" id="L91">		getContentPane().add(lblNewLabel);</span>
+		
+<span class="nc" id="L93">		textHilabetea = new JTextField();</span>
+<span class="nc" id="L94">		textHilabetea.setColumns(10);</span>
+<span class="nc" id="L95">		textHilabetea.setBounds(77, 125, 49, 22);</span>
+<span class="nc" id="L96">		getContentPane().add(textHilabetea);</span>
+		
+<span class="nc" id="L98">		textUrtea = new JTextField();</span>
+<span class="nc" id="L99">		textUrtea.setColumns(10);</span>
+<span class="nc" id="L100">		textUrtea.setBounds(147, 125, 49, 22);</span>
+<span class="nc" id="L101">		getContentPane().add(textUrtea);</span>
+		
+<span class="nc" id="L103">		JLabel label = new JLabel(&quot;/&quot;);</span>
+<span class="nc" id="L104">		label.setBounds(132, 128, 13, 16);</span>
+<span class="nc" id="L105">		getContentPane().add(label);</span>
+		
+<span class="nc" id="L107">		JLabel lblCvv = new JLabel(&quot;CVV&quot;);</span>
+<span class="nc" id="L108">		lblCvv.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L109">		lblCvv.setBounds(26, 156, 42, 16);</span>
+<span class="nc" id="L110">		getContentPane().add(lblCvv);</span>
+		
+<span class="nc" id="L112">		textCVV = new JTextField();</span>
+<span class="nc" id="L113">		textCVV.setColumns(10);</span>
+<span class="nc" id="L114">		textCVV.setBounds(76, 154, 78, 22);</span>
+<span class="nc" id="L115">		getContentPane().add(textCVV);</span>
+		
+<span class="nc" id="L117">		jLabelMezu.setBounds(162, 220 ,276, 22);</span>
+<span class="nc" id="L118">		getContentPane().add(jLabelMezu);</span>
+<span class="nc" id="L119">		jLabelErrore.setForeground(Color.RED);</span>
+<span class="nc" id="L120">		jLabelErrore.setBounds(162, 220, 276, 14);</span>
+<span class="nc" id="L121">		getContentPane().add(jLabelErrore);</span>
+		
+<span class="nc" id="L123">		btnSartu = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SARTU&quot;));</span>
+<span class="nc" id="L124">		btnSartu.setBounds(147, 185, 127, 22);</span>
+<span class="nc" id="L125">		getContentPane().add(btnSartu);</span>
+		
+		
+<span class="nc" id="L128">		btnSartu.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L130">				String dirukant = textFieldDiru.getText();</span>
+								
+<span class="nc bnc" id="L132" title="All 2 branches missed.">				if(dirukant.length()&gt;0) { //Zerbait sartu da</span>
+<span class="nc" id="L133">					double quantity = Double.parseDouble(textFieldDiru.getText());</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">					if (quantity&lt;10.00 || quantity&gt;500.00) {</span>
+<span class="nc" id="L135">						jLabelMezu.setText(&quot;&quot;);</span>
+<span class="nc" id="L136">						jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MoneyError&quot;));</span>
+					}else {
+<span class="nc" id="L138">						String hila = textHilabetea.getText();</span>
+<span class="nc" id="L139">						String urte = textUrtea.getText();</span>
+<span class="nc" id="L140">						String txart = textTxartela.getText();</span>
+<span class="nc" id="L141">						String zenb = textCVV.getText();</span>
+						
+<span class="nc bnc" id="L143" title="All 2 branches missed.">						if(txart.length()==16) {</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">							if (hila.length()==2) {</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">								if( urte.length()==2) {</span>
+<span class="nc" id="L146">								int hila1 = Integer.parseInt(hila);</span>
+<span class="nc" id="L147">								int urte1 = Integer.parseInt(urte);</span>
+<span class="nc bnc" id="L148" title="All 6 branches missed.">								if (hila1&gt; 0 &amp;&amp; hila1&lt;= 12 &amp;&amp; urte1&gt;=20) {</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">									if (zenb.length()==3) {</span>
+//										DateFormat dateFormat = new SimpleDateFormat(&quot;yyyy/MM/dd HH:mm:ss&quot;);
+<span class="nc" id="L151">										Date data = new Date();</span>
+										
+<span class="nc" id="L153">										BLFacade b = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L154">										b.updateUser(logeatuta, quantity, data);</span>
+											
+<span class="nc" id="L156">										jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Entered&quot;));</span>
+<span class="nc" id="L157">										jLabelMezu.setText(&quot;&quot;);</span>
+																
+<span class="nc" id="L159">									}else {</span>
+<span class="nc" id="L160">										jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Cvv&quot;));</span>
+<span class="nc" id="L161">										jLabelMezu.setText(&quot;&quot;);</span>
+									}
+									
+								}else {
+<span class="nc" id="L165">									jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DateProb&quot;));</span>
+<span class="nc" id="L166">									jLabelMezu.setText(&quot;&quot;);</span>
+								}
+								
+<span class="nc" id="L169">							}else {</span>
+<span class="nc" id="L170">								jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DateProb&quot;));</span>
+<span class="nc" id="L171">								jLabelMezu.setText(&quot;&quot;);</span>
+							}
+							}else {
+<span class="nc" id="L174">								jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;DateProb&quot;));</span>
+<span class="nc" id="L175">								jLabelMezu.setText(&quot;&quot;);</span>
+							}
+								
+							}else {
+<span class="nc" id="L179">								jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;CardProb&quot;));</span>
+<span class="nc" id="L180">								jLabelMezu.setText(&quot;&quot;);</span>
+							}
+						}
+<span class="nc" id="L183">					}else {</span>
+<span class="nc" id="L184">						jLabelErrore.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;MoneyError&quot;));</span>
+<span class="nc" id="L185">						jLabelMezu.setText(&quot;&quot;);</span>
+					}			
+<span class="nc" id="L187">			}</span>
+		});
+<span class="nc" id="L189">	}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,60 @@
+
+,domain.Question#toString()Ljava/lang/String;L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.java© ©("1*§
+
+1L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª	 ª(™
+–
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª	 ª(
+%0java.lang.Integer"__id*'*%
+domain.Question"
+questionNumber•
+’
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª	 ª(
+%1java.lang.String"__concat*
+
+%0java.lang.Integer*
+;’
+
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª ª($
+%2java.lang.String"__id*!*
+domain.Question"
+
+question§
+¤
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª	 ª($
+%3java.lang.String"__concat*
+
+%1java.lang.String*
+
+%2java.lang.String”
+‘
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª	 ª((
+%4java.lang.String"__concat*
+
+%3java.lang.String*
+;µ
+²
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª) ª(C
+%5java.lang.String"-java.lang.Float#toString(F)Ljava/lang/String;*"
+java.lang.Float*
+""§
+¤
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª	 ª(C
+%6java.lang.String"__concat*
+
+%4java.lang.String*
+
+%5java.lang.String"h
+L
+@C:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Question.javaª ª(D
+
+%6java.lang.StringB
+domain.Question

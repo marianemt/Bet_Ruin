@@ -1,0 +1,70 @@
+
+6domain.Erabiltzaile#kantzelatuMug(Ldomain/Mugimendu;)ZP
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.javaƒ ƒ("1*–
+1P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java„ „(zx
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java„ „(
+%0java.util.Date"java.util.Date
+Š
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java„ „(
+%1"java.util.Date#<init>()V*
+
+%0java.util.Date‹
+ˆ
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java„ „(
+datajava.util.Date"__id*
+
+%0java.util.Date¨¥
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java…% …(3
+%2double"domain.Mugimendu#getDirua()D*
+
+mugdomain.Mugimendu2
+getDirua()~|
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java… …(
+%3domain.Mugimendu"domain.Mugimenduú
+÷
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java… …(:
+%4"@domain.Mugimendu#<init>(Ljava/util/Date;DLdomain/Erabiltzaile;)V*
+
+%3domain.Mugimendu*
+
+datajava.util.Date*
+
+%2double*
+domain.Erabiltzaile
+Š
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java… …(;
+mudomain.Mugimendu"__id*
+
+%3domain.MugimenduŠ‡
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java† †(
+%5domain.Mugimendu"Fdomain.Erabiltzaile#addMugimendu(Ldomain/Mugimendu;)Ldomain/Mugimendu;*
+domain.Erabiltzaile*
+
+mudomain.Mugimendu2 addMugimendu(Ldomain/Mugimendu;)
+š
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java‡	 ‡(
+%6java.util.Vector"__id*(*&
+domain.Erabiltzaile"
+mugimenduakãà
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java‡	 ‡(%
+%7boolean",java.util.Vector#remove(Ljava/lang/Object;)Z*
+
+%6java.util.Vector*
+
+mugdomain.Mugimendu2remove(Ljava/lang/Object;)"Z
+P
+DC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/Erabiltzaile.java‡ ‡(&
+"":
+mugdomain.MugimenduB
+domain.Erabiltzaile

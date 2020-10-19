@@ -1,0 +1,82 @@
+
+\businessLogic.BLFacadeImplementation#removeApustua(Ldomain/Mugimendu;Ldomain/Erabiltzaile;)Za
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÊ Ê( "startingBlock*‹
+startingBlocka
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÊ! Ê(B«
+¨
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÉ É(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+mudomain.Mugimendu”
+‘
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÊ, Ê(.
+mudomain.Mugimendu"__annotation*
+
+%6°
+­
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÉ É(
+%7"
+__annotate*
+javax.jws.WebMethod*
+
+userdomain.Erabiltzaile™
+–
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÊ= Ê(A
+userdomain.Erabiltzaile"__annotation*
+
+%7*
+1*û
+1a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaË Ë(Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaË Ë(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÂ¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaË Ë(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÍ Í(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÔÑ
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÍ Í(3
+%3boolean"MdataAccess.DataAccess#removeApustua(Ldomain/Mugimendu;Ldomain/Erabiltzaile;)Z*
+
+%2dataAccess.DataAccess*
+
+mudomain.Mugimendu*
+
+userdomain.Erabiltzaile26removeApustua(Ldomain/Mugimendu;Ldomain/Erabiltzaile;)Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÎ Î(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerº·
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÎ Î(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"k
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÏ Ï(
+"":
+mudomain.Mugimendu:
+userdomain.ErabiltzaileB(&
+$businessLogic.BLFacadeImplementation

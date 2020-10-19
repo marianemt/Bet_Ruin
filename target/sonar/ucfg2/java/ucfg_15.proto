@@ -1,0 +1,71 @@
+
+IdataAccess.DataAccess#getUser(Ldomain/Erabiltzaile;)Ldomain/Erabiltzaile;R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaª ª("1*»
+1R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java« «(§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java« «(%
+%0javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db”‘
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java« «()
+%1#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%0javax.persistence.EntityManager2getTransaction()ÇÄ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java« «(
+
+%2void",javax.persistence.EntityTransaction#begin()V*+
+)
+%1#javax.persistence.EntityTransaction2begin()§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¬ ¬(%
+%3javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÌÉ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¬3 ¬(B
+%4java.lang.String"0domain.Erabiltzaile#getPosta()Ljava/lang/String;*
+
+userdomain.Erabiltzaile2
+getPosta()ÅÂ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¬ ¬(C
+%5domain.Erabiltzaile"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%3javax.persistence.EntityManager*
+""*
+
+%4java.lang.String2)find(Ljava/lang/Class;Ljava/lang/Object;)•
+’
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¬ ¬(D
+emdomain.Erabiltzaile"__id*
+
+%5domain.Erabiltzaile§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java­ ­(%
+%6javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db”‘
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java­ ­()
+%7#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%6javax.persistence.EntityManager2getTransaction()ÉÆ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java­ ­(!
+
+%8void"-javax.persistence.EntityTransaction#commit()V*+
+)
+%7#javax.persistence.EntityTransaction2commit()"q
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java® ®(
+
+emdomain.Erabiltzaile:
+userdomain.ErabiltzaileB
+dataAccess.DataAccess

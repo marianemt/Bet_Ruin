@@ -1,0 +1,203 @@
+
+MdataAccess.DataAccess#removeApustua(Ldomain/Mugimendu;Ldomain/Erabiltzaile;)ZR
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java– –("18*Ÿ
+13R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java› ›(B•
+’
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java› ›(B
+usdomain.Erabiltzaile"__id*
+
+%7domain.Erabiltzaile¦£
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaœ œ( 
+%8double"domain.Mugimendu#getDirua()D*
+
+cdomain.Apustua2
+getDirua()*
+12*¦
+14R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java› ›(AÅÂ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java› ›(A
+%7domain.Erabiltzaile"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%5javax.persistence.EntityManager*
+""*
+
+%6java.lang.String2)find(Ljava/lang/Class;Ljava/lang/Object;)*
+13*ä
+15R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaš š((Š
+‡
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaš š((
+cdomain.Apustua"__id*
+
+%4domain.Apustua§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java› ›(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÌÉ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java›1 ›(@
+%6java.lang.String"0domain.Erabiltzaile#getPosta()Ljava/lang/String;*
+
+userdomain.Erabiltzaile2
+getPosta()*
+14*Ë
+16R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaš š(§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaš š(%
+%3javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÀ½
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaš š('
+%4domain.Apustua"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%3javax.persistence.EntityManager*
+""*
+
+mudomain.Mugimendu2)find(Ljava/lang/Class;Ljava/lang/Object;)*
+15*¨
+17R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java™ ™(ÇÄ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java™ ™(
+
+%2void",javax.persistence.EntityTransaction#begin()V*+
+)
+%1#javax.persistence.EntityTransaction2begin()*
+16*Ÿ
+18R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java™ ™(§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java™ ™(%
+%0javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db”‘
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java™ ™()
+%1#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%0javax.persistence.EntityManager2getTransaction()*
+17*µ
+1R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java§	 §("\
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java§ §(
+""*ú
+4R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¡ ¡(9¬
+©
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¡ ¡(9
+%20java.lang.String"__concat*
+Apustua removed	*
+
+%19java.lang.Integerìé
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¡ ¡(:
+%21void"0java.io.PrintStream#println(Ljava/lang/String;)V*
+
+%18java.io.PrintStream*
+
+%20java.lang.String2println(Ljava/lang/String;)*
+1*ª
+5R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¡ ¡(	€
+~
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¡ ¡(
+%18java.io.PrintStream"__id*
+""ÈÅ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java¡* ¡(9
+%19java.lang.Integer"/domain.Apustua#getApustuId()Ljava/lang/Integer;*
+
+cdomain.Apustua2getApustuId()*
+4*ª
+6R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java   (ËÈ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java   (
+%17void"-javax.persistence.EntityTransaction#commit()V*,
+*
+%16#javax.persistence.EntityTransaction2commit()*
+5* 
+7R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java   (¨
+¥
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java   (&
+%15javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db–“
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java   (*
+%16#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*(
+&
+%15javax.persistence.EntityManager2getTransaction()*
+6*ˆ
+8R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaŸ Ÿ(¨
+¥
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaŸ Ÿ(&
+%13javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbşû
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaŸ Ÿ(
+%14void";javax.persistence.EntityManager#remove(Ljava/lang/Object;)V*(
+&
+%13javax.persistence.EntityManager*
+
+cdomain.Apustua2remove(Ljava/lang/Object;)*
+7*Õ
+9R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java (öó
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java (
+%12boolean"6domain.Erabiltzaile#kantzelatuMug(Ldomain/Mugimendu;)Z*
+
+usdomain.Erabiltzaile*
+
+cdomain.Apustua2!kantzelatuMug(Ldomain/Mugimendu;)*
+8*Ê
+10R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java (êç
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java (
+%11boolean"0domain.Erabiltzaile#remApustu(Ldomain/Apustua;)Z*
+
+usdomain.Erabiltzaile*
+
+cdomain.Apustua2remApustu(Ldomain/Apustua;)*
+9*£
+11R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaœ œ(3Â¿
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaœ œ(4
+%10void"%domain.Erabiltzaile#setDiruZorroa(D)V*
+
+usdomain.Erabiltzaile*
+""2setDiruZorroa(D)*
+10*š
+12R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaœ! œ(#¹¶
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaœ! œ(3
+%9double"$domain.Erabiltzaile#getDiruZorroa()D*
+
+usdomain.Erabiltzaile2getDiruZorroa()*
+11:
+mudomain.Mugimendu:
+userdomain.ErabiltzaileB
+dataAccess.DataAccess

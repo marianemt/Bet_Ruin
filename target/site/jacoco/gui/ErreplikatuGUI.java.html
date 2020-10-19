@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ErreplikatuGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">ErreplikatuGUI.java</span></div><h1>ErreplikatuGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import javax.swing.JFrame;
+
+import domain.Erabiltzaile;
+import exceptions.ErabiltzaileNoExist;
+
+import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import java.awt.event.ActionEvent;
+
+import businessLogic.BLFacade;
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+public class ErreplikatuGUI extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	private JTextField txtPosta;
+
+
+<span class="nc" id="L25">	public ErreplikatuGUI(Erabiltzaile user) {</span>
+<span class="nc" id="L26">		initialize(user);</span>
+<span class="nc" id="L27">	}</span>
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize(final Erabiltzaile user) {
+<span class="nc" id="L33">		this.setBounds(100, 100, 462, 261);</span>
+<span class="nc" id="L34">		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L35">		this.getContentPane().setLayout(null);</span>
+		
+<span class="nc" id="L37">		JButton btnClose = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Close&quot;));</span>
+<span class="nc" id="L38">		btnClose.setBounds(263, 135, 128, 33);</span>
+<span class="nc" id="L39">		this.getContentPane().add(btnClose);</span>
+<span class="nc" id="L40">		btnClose.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L42">				btnClose(arg0);</span>
+<span class="nc" id="L43">			}</span>
+		});
+<span class="nc" id="L45">		this.getContentPane().add(btnClose, BorderLayout.SOUTH);</span>
+		
+<span class="nc" id="L47">		JButton btnErreplikatu = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Erreplikatu&quot;));</span>
+<span class="nc" id="L48">		btnErreplikatu.setBounds(48, 132, 123, 38);</span>
+<span class="nc" id="L49">		this.getContentPane().add(btnErreplikatu);</span>
+		
+<span class="nc" id="L51">		txtPosta = new JTextField();</span>
+<span class="nc" id="L52">		txtPosta.setBounds(138, 45, 271, 26);</span>
+<span class="nc" id="L53">		this.getContentPane().add(txtPosta);</span>
+<span class="nc" id="L54">		txtPosta.setColumns(10);</span>
+		
+<span class="nc" id="L56">		JLabel lblpost = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PostaW&quot;));</span>
+<span class="nc" id="L57">		lblpost.setBounds(15, 48, 96, 20);</span>
+<span class="nc" id="L58">		this.getContentPane().add(lblpost);</span>
+		
+<span class="nc" id="L60">		final JLabel lblError = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L61">		lblError.setBounds(48, 96, 343, 20);</span>
+<span class="nc" id="L62">		this.getContentPane().add(lblError);</span>
+		
+<span class="nc" id="L64">		btnErreplikatu.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L66">				String posta= txtPosta.getText();</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">				if(!posta.contains(&quot;@mail.com&quot;)||!posta.contains(&quot;@bets.com&quot;)) lblError.setText(&quot;Ez da posta&quot;);</span>
+				
+				try {
+<span class="nc" id="L70">					BLFacade a = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L71">					a.erreplikatu(user, posta);</span>
+<span class="nc" id="L72">					lblError.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Erreplikatuda&quot;));</span>
+<span class="nc" id="L73">				} catch (ErabiltzaileNoExist e1) {</span>
+<span class="nc" id="L74">					lblError.setText(e1.getMessage());</span>
+<span class="nc" id="L75">				}</span>
+				
+<span class="nc" id="L77">			}</span>
+		});
+		
+		
+<span class="nc" id="L81">	}</span>
+	
+	private void btnClose(ActionEvent e) {
+<span class="nc" id="L84">		this.setVisible(false);</span>
+<span class="nc" id="L85">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

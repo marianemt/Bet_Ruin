@@ -1,0 +1,72 @@
+
+XbusinessLogic.BLFacadeImplementation#getUser(Ldomain/Erabiltzaile;)Ldomain/Erabiltzaile;a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÓ Ó("startingBlock*Æ
+startingBlocka
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÓ Ó(/°
+­
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÒ Ò(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+userdomain.Erabiltzaile™
+–
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÓ* Ó(.
+userdomain.Erabiltzaile"__annotation*
+
+%6*
+1*Ž
+1a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÔ Ô(Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÔ Ô(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÂ¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÔ Ô(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÖ Ö( 
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerª§
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÖ Ö(.
+%3domain.Erabiltzaile"IdataAccess.DataAccess#getUser(Ldomain/Erabiltzaile;)Ldomain/Erabiltzaile;*
+
+%2dataAccess.DataAccess*
+
+userdomain.Erabiltzaile2getUser(Ldomain/Erabiltzaile;)¤
+¡
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaÖ Ö(/
+emdomain.Erabiltzaile"__id*
+
+%3domain.ErabiltzaileÂ
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java× ×(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerº·
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java× ×(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"€
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaØ Ø(
+
+emdomain.Erabiltzaile:
+userdomain.ErabiltzaileB(&
+$businessLogic.BLFacadeImplementation

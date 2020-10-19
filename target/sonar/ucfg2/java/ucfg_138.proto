@@ -1,0 +1,44 @@
+
+@gui.ApustuEginGUI#getToday(Ljava/lang/String;)Ljava/lang/String;N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.java¥ ¥( "1*ƒ	
+1N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.javaµ µ(xv
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.javaµ µ(
+%0java.util.Date"java.util.Dateã
+à
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.javaµ µ(
+%1"java.util.Date#<init>()V*
+
+%0java.util.Dateâ
+Ü
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.javaµ µ(
+datejava.util.Date"__id*
+
+%0java.util.Dateëé
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.java∂ ∂(! 
+%2java.text.SimpleDateFormat"java.text.SimpleDateFormat”
+–
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.java∂ ∂()
+%3"6java.text.SimpleDateFormat#<init>(Ljava/lang/String;)V*"
+ 
+%2java.text.SimpleDateFormat*
+
+formatjava.lang.StringÑÅ
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.java∂ ∂(6
+%4java.lang.String"?java.text.DateFormat#format(Ljava/util/Date;)Ljava/lang/String;*"
+ 
+%2java.text.SimpleDateFormat*
+
+datejava.util.Date2format(Ljava/util/Date;)"j
+N
+BC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/ApustuEginGUI.java∂ ∂(7
+
+%4java.lang.String:
+formatjava.lang.StringB"
+gui.ApustuEginGUI

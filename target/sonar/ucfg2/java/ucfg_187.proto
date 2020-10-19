@@ -1,0 +1,89 @@
+
+gbusinessLogic.BLFacadeImplementation#isLogin(Ljava/lang/String;Ljava/lang/String;)Ldomain/Erabiltzaile;a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java† †("startingBlock*•
+startingBlocka
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java† †(?®
+«
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java… …(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+postajava.lang.String—
+”
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java†' †(,
+postajava.lang.String"__annotation*
+
+%6²
+¯
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java… …(
+%7"
+__annotate*
+javax.jws.WebMethod*
+
+	pasahitzajava.lang.String›
+˜
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java†5 †(>
+	pasahitzajava.lang.String"__annotation*
+
+%7*
+1*Í
+1a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‡ ‡(Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‡ ‡(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÂ¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‡ ‡(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‰ ‰(!
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerçä
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‰ ‰(;
+%3domain.Erabiltzaile"XdataAccess.DataAccess#isLogin(Ljava/lang/String;Ljava/lang/String;)Ldomain/Erabiltzaile;*
+
+%2dataAccess.DataAccess*
+
+postajava.lang.String*
+
+	pasahitzajava.lang.String2-isLogin(Ljava/lang/String;Ljava/lang/String;)¥
+¢
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‰ ‰(<
+logdomain.Erabiltzaile"__id*
+
+%3domain.ErabiltzaileÂ
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaŠ Š(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerº·
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaŠ Š(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java‹ ‹(
+
+logdomain.Erabiltzaile:
+postajava.lang.String:
+	pasahitzajava.lang.StringB(&
+$businessLogic.BLFacadeImplementation

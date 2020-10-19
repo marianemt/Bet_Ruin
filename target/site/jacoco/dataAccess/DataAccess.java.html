@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataAccess.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">dataAccess</a> &gt; <span class="el_source">DataAccess.java</span></div><h1>DataAccess.java</h1><pre class="source lang-java linenums">package dataAccess;
+
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import configuration.ConfigXML;
+import configuration.UtilDate;
+import domain.Event;
+import domain.Kuota;
+import domain.Mugimendu;
+import domain.Question;
+import exceptions.DirurikEZ;
+import exceptions.EmaitzaExist;
+import exceptions.ErabiltzaileNoExist;
+import exceptions.KuotaAlreadyExist;
+import exceptions.QuestionAlreadyExist;
+//import exceptions.UserNotExists;
+import domain.Admin;
+import domain.Apustua;
+import domain.Bezero;
+import domain.DiruMug;
+import domain.Erabiltzaile;
+
+/**
+ * It implements the data access to the objectDb database
+ */
+public class DataAccess  {
+	protected static EntityManager  db;
+	protected static EntityManagerFactory emf;
+<span class="nc" id="L43">	private Vector&lt;Erabiltzaile&gt;recurrent=new Vector&lt;Erabiltzaile&gt;();</span>
+	ConfigXML c;
+<span class="nc" id="L45">	public DataAccess(boolean initializeMode)  {</span>
+		
+<span class="nc" id="L47">		c=ConfigXML.getInstance();</span>
+		
+<span class="nc" id="L49">		System.out.println(&quot;Creating DataAccess instance =&gt; isDatabaseLocal: &quot;+c.isDatabaseLocal()+&quot; getDatabBaseOpenMode: &quot;+c.getDataBaseOpenMode());</span>
+
+<span class="nc" id="L51">		String fileName=c.getDbFilename();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if (initializeMode)</span>
+<span class="nc" id="L53">			fileName=fileName+&quot;;drop&quot;;</span>
+		
+<span class="nc bnc" id="L55" title="All 2 branches missed.">		if (c.isDatabaseLocal()) {</span>
+<span class="nc" id="L56">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb:&quot;+fileName);</span>
+<span class="nc" id="L57">			  db = emf.createEntityManager();</span>
+		} else {
+<span class="nc" id="L59">			Map&lt;String, String&gt; properties = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L60">			  properties.put(&quot;javax.persistence.jdbc.user&quot;, c.getUser());</span>
+<span class="nc" id="L61">			  properties.put(&quot;javax.persistence.jdbc.password&quot;, c.getPassword());</span>
+
+<span class="nc" id="L63">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb://&quot;+c.getDatabaseNode()+&quot;:&quot;+c.getDatabasePort()+&quot;/&quot;+fileName, properties);</span>
+
+<span class="nc" id="L65">			  db = emf.createEntityManager();</span>
+    	   }
+<span class="nc" id="L67">	}</span>
+
+<span class="nc" id="L69">	public DataAccess()  {	</span>
+<span class="nc" id="L70">		 new DataAccess(false);</span>
+<span class="nc" id="L71">	}</span>
+	
+	
+	/**
+	 * This is the data access method that initializes the database with some events and questions.
+	 * This method is invoked by the business logic (constructor of BLFacadeImplementation) when the option &quot;initialize&quot; is declared in the tag dataBaseOpenMode of resources/config.xml file
+	 */	
+	public void initializeDB(){
+		
+<span class="nc" id="L80">		db.getTransaction().begin();</span>
+		try {
+
+			
+<span class="nc" id="L84">		   Calendar today = Calendar.getInstance();</span>
+		   
+<span class="nc" id="L86">		   int month=today.get(Calendar.MONTH);</span>
+<span class="nc" id="L87">		   month+=1;</span>
+<span class="nc" id="L88">		   int year=today.get(Calendar.YEAR);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">		   if (month==12) { month=0; year+=1;}  </span>
+	    
+<span class="nc" id="L91">			Event ev1=new Event(1, &quot;Atlético-Athletic&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L92">			Event ev2=new Event(2, &quot;Eibar-Barcelona&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L93">			Event ev3=new Event(3, &quot;Getafe-Celta&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L94">			Event ev4=new Event(4, &quot;Alavés-Deportivo&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L95">			Event ev5=new Event(5, &quot;Español-Villareal&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L96">			Event ev6=new Event(6, &quot;Las Palmas-Sevilla&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L97">			Event ev7=new Event(7, &quot;Malaga-Valencia&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L98">			Event ev8=new Event(8, &quot;Girona-Leganés&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L99">			Event ev9=new Event(9, &quot;Real Sociedad-Levante&quot;, UtilDate.newDate(year,month,17));</span>
+<span class="nc" id="L100">			Event ev10=new Event(10, &quot;Betis-Real Madrid&quot;, UtilDate.newDate(year,month,17));</span>
+
+<span class="nc" id="L102">			Event ev11=new Event(11, &quot;Atletico-Athletic&quot;, UtilDate.newDate(year,month,1));</span>
+<span class="nc" id="L103">			Event ev12=new Event(12, &quot;Eibar-Barcelona&quot;, UtilDate.newDate(year,month,1));</span>
+<span class="nc" id="L104">			Event ev13=new Event(13, &quot;Getafe-Celta&quot;, UtilDate.newDate(year,month,1));</span>
+<span class="nc" id="L105">			Event ev14=new Event(14, &quot;Alavés-Deportivo&quot;, UtilDate.newDate(year,month,1));</span>
+<span class="nc" id="L106">			Event ev15=new Event(15, &quot;Español-Villareal&quot;, UtilDate.newDate(year,month,1));</span>
+<span class="nc" id="L107">			Event ev16=new Event(16, &quot;Las Palmas-Sevilla&quot;, UtilDate.newDate(year,month,1));</span>
+			
+
+<span class="nc" id="L110">			Event ev17=new Event(17, &quot;Málaga-Valencia&quot;, UtilDate.newDate(year,month,28));</span>
+<span class="nc" id="L111">			Event ev18=new Event(18, &quot;Girona-Leganés&quot;, UtilDate.newDate(year,month,28));</span>
+<span class="nc" id="L112">			Event ev19=new Event(19, &quot;Real Sociedad-Levante&quot;, UtilDate.newDate(year,month,28));</span>
+<span class="nc" id="L113">			Event ev20=new Event(20, &quot;Betis-Real Madrid&quot;, UtilDate.newDate(year,month,28));</span>
+			
+			Question q1;
+			Question q2;
+			Question q3;
+			Question q4;
+			Question q5;
+			Question q6;
+					
+<span class="nc bnc" id="L122" title="All 2 branches missed.">			if (Locale.getDefault().equals(new Locale(&quot;es&quot;))) {</span>
+<span class="nc" id="L123">				q1=ev1.addQuestion(&quot;¿Quién ganará el partido?&quot;,1);</span>
+<span class="nc" id="L124">				q2=ev1.addQuestion(&quot;¿Quién meterá el primer gol?&quot;,2);</span>
+<span class="nc" id="L125">				q3=ev11.addQuestion(&quot;¿Quién ganará el partido?&quot;,1);</span>
+<span class="nc" id="L126">				q4=ev11.addQuestion(&quot;¿Cuántos goles se marcarán?&quot;,2);</span>
+<span class="nc" id="L127">				q5=ev17.addQuestion(&quot;¿Quién ganará el partido?&quot;,1);</span>
+<span class="nc" id="L128">				q6=ev17.addQuestion(&quot;¿Habrá goles en la primera parte?&quot;,2);</span>
+			}
+<span class="nc bnc" id="L130" title="All 2 branches missed.">			else if (Locale.getDefault().equals(new Locale(&quot;en&quot;))) {</span>
+<span class="nc" id="L131">				q1=ev1.addQuestion(&quot;Who will win the match?&quot;,1);</span>
+<span class="nc" id="L132">				q2=ev1.addQuestion(&quot;Who will score first?&quot;,2);</span>
+<span class="nc" id="L133">				q3=ev11.addQuestion(&quot;Who will win the match?&quot;,1);</span>
+<span class="nc" id="L134">				q4=ev11.addQuestion(&quot;How many goals will be scored in the match?&quot;,2);</span>
+<span class="nc" id="L135">				q5=ev17.addQuestion(&quot;Who will win the match?&quot;,1);</span>
+<span class="nc" id="L136">				q6=ev17.addQuestion(&quot;Will there be goals in the first half?&quot;,2);</span>
+			}			
+			else {
+<span class="nc" id="L139">				q1=ev1.addQuestion(&quot;Zeinek irabaziko du partidua?&quot;,1);</span>
+<span class="nc" id="L140">				q2=ev1.addQuestion(&quot;Zeinek sartuko du lehenengo gola?&quot;,2);</span>
+<span class="nc" id="L141">				q3=ev11.addQuestion(&quot;Zeinek irabaziko du partidua?&quot;,1);</span>
+<span class="nc" id="L142">				q4=ev11.addQuestion(&quot;Zenbat gol sartuko dira?&quot;,2);</span>
+<span class="nc" id="L143">				q5=ev17.addQuestion(&quot;Zeinek irabaziko du partidua?&quot;,1);</span>
+<span class="nc" id="L144">				q6=ev17.addQuestion(&quot;Golak sartuko dira lehenengo zatian?&quot;,2);</span>
+				
+			}
+			Kuota k1, k2, k3;
+<span class="nc" id="L148">			k1=q1.addKuota(&quot;Atlético&quot;, 1.30);</span>
+<span class="nc" id="L149">			k2=q1.addKuota(&quot;Enpate&quot;, 1.70);</span>
+<span class="nc" id="L150">			k3=q1.addKuota(&quot;Athletic&quot;, 1.80);</span>
+			
+<span class="nc" id="L152">			db.persist(k1);</span>
+<span class="nc" id="L153">			db.persist(k2);</span>
+<span class="nc" id="L154">			db.persist(k3);</span>
+			
+<span class="nc" id="L156">			Erabiltzaile newErab = new Bezero(&quot;Mariane&quot;,&quot;Menath&quot;,21,&quot;mariane@mail.com&quot;,&quot;12345678&quot;);</span>
+<span class="nc" id="L157">			Erabiltzaile newErab2 = new Bezero(&quot;Iker&quot;,&quot;Ossa&quot;,21,&quot;iker@mail.com&quot;,&quot;12345678&quot;);</span>
+<span class="nc" id="L158">			Erabiltzaile newErab3 = new Bezero(&quot;Xabier&quot;,&quot;Larrea&quot;,20,&quot;larrea@mail.com&quot;,&quot;12345678&quot;);</span>
+<span class="nc" id="L159">			Erabiltzaile admin = new Admin(&quot;Administratzailea&quot;, &quot;BereAbizena&quot;,95,&quot;admin@bets.com&quot;,&quot;Admin1234&quot;);</span>
+
+			
+<span class="nc" id="L162">			db.persist(admin);</span>
+<span class="nc" id="L163">			db.persist(newErab);</span>
+<span class="nc" id="L164">			db.persist(newErab2);</span>
+<span class="nc" id="L165">			db.persist(newErab3);</span>
+
+			
+<span class="nc" id="L168">			db.persist(q1);</span>
+<span class="nc" id="L169">			db.persist(q2);</span>
+<span class="nc" id="L170">			db.persist(q3);</span>
+<span class="nc" id="L171">			db.persist(q4);</span>
+<span class="nc" id="L172">			db.persist(q5);</span>
+<span class="nc" id="L173">			db.persist(q6);</span>
+	
+	        
+<span class="nc" id="L176">			db.persist(ev1);</span>
+<span class="nc" id="L177">			db.persist(ev2);</span>
+<span class="nc" id="L178">			db.persist(ev3);</span>
+<span class="nc" id="L179">			db.persist(ev4);</span>
+<span class="nc" id="L180">			db.persist(ev5);</span>
+<span class="nc" id="L181">			db.persist(ev6);</span>
+<span class="nc" id="L182">			db.persist(ev7);</span>
+<span class="nc" id="L183">			db.persist(ev8);</span>
+<span class="nc" id="L184">			db.persist(ev9);</span>
+<span class="nc" id="L185">			db.persist(ev10);</span>
+<span class="nc" id="L186">			db.persist(ev11);</span>
+<span class="nc" id="L187">			db.persist(ev12);</span>
+<span class="nc" id="L188">			db.persist(ev13);</span>
+<span class="nc" id="L189">			db.persist(ev14);</span>
+<span class="nc" id="L190">			db.persist(ev15);</span>
+<span class="nc" id="L191">			db.persist(ev16);</span>
+<span class="nc" id="L192">			db.persist(ev17);</span>
+<span class="nc" id="L193">			db.persist(ev18);</span>
+<span class="nc" id="L194">			db.persist(ev19);</span>
+<span class="nc" id="L195">			db.persist(ev20);			</span>
+			
+<span class="nc" id="L197">			db.getTransaction().commit();</span>
+<span class="nc" id="L198">			System.out.println(&quot;Db initialized&quot;);</span>
+		}
+<span class="nc" id="L200">		catch (Exception e){</span>
+<span class="nc" id="L201">			e.printStackTrace();</span>
+<span class="nc" id="L202">		}</span>
+<span class="nc" id="L203">	}</span>
+	
+	/**
+	 * This method creates a question for an event, with a question text and the minimum bet
+	 * 
+	 * @param event to which question is added
+	 * @param question text of the question
+	 * @param betMinimum minimum quantity of the bet
+	 * @return the created question, or null, or an exception
+ 	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 */
+	public Question createQuestion(Event event, String question, float betMinimum) throws  QuestionAlreadyExist {
+<span class="nc" id="L215">		System.out.println(&quot;&gt;&gt; DataAccess: createQuestion=&gt; event= &quot;+event+&quot; question= &quot;+question+&quot; betMinimum=&quot;+betMinimum);</span>
+		
+<span class="nc" id="L217">			Event ev = db.find(Event.class, event.getEventNumber());</span>
+			
+<span class="nc bnc" id="L219" title="All 2 branches missed.">			if (ev.DoesQuestionExists(question)) throw new QuestionAlreadyExist(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorQueryAlreadyExist&quot;));</span>
+			
+<span class="nc" id="L221">			db.getTransaction().begin();</span>
+<span class="nc" id="L222">			Question q = ev.addQuestion(question, betMinimum);</span>
+<span class="nc" id="L223">			db.getTransaction().commit();</span>
+<span class="nc" id="L224">			return q;</span>
+		
+	}
+	
+	/**
+	 * This method retrieves from the database the events of a given date 
+	 * 
+	 * @param date in which events are retrieved
+	 * @return collection of events
+	 */
+	public Vector&lt;Event&gt; getEvents(Date date) {
+<span class="nc" id="L235">		System.out.println(&quot;&gt;&gt; DataAccess: getEvents&quot;);</span>
+<span class="nc" id="L236">		Vector&lt;Event&gt; res = new Vector&lt;Event&gt;();	</span>
+<span class="nc" id="L237">		TypedQuery&lt;Event&gt; query = db.createQuery(&quot;SELECT ev FROM Event ev WHERE ev.eventDate=?1&quot;,Event.class);   </span>
+<span class="nc" id="L238">		query.setParameter(1, date);</span>
+<span class="nc" id="L239">		List&lt;Event&gt; events = query.getResultList();</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">	 	 for (Event ev:events){</span>
+<span class="nc" id="L241">	 	   System.out.println(ev.toString());		 </span>
+<span class="nc" id="L242">		   res.add(ev);</span>
+<span class="nc" id="L243">		  }</span>
+<span class="nc" id="L244">	 	return res;</span>
+	}
+	
+	/**
+	 * This method retrieves from the database the dates a month for which there are events
+	 * 
+	 * @param date of the month for which days with events want to be retrieved 
+	 * @return collection of dates
+	 */
+	public Vector&lt;Date&gt; getEventsMonth(Date date) {
+<span class="nc" id="L254">		System.out.println(&quot;&gt;&gt; DataAccess: getEventsMonth&quot;);</span>
+<span class="nc" id="L255">		Vector&lt;Date&gt; res = new Vector&lt;Date&gt;();	</span>
+		
+<span class="nc" id="L257">		Date firstDayMonthDate= UtilDate.firstDayMonth(date);</span>
+<span class="nc" id="L258">		Date lastDayMonthDate= UtilDate.lastDayMonth(date);</span>
+				
+		
+<span class="nc" id="L261">		TypedQuery&lt;Date&gt; query = db.createQuery(&quot;SELECT DISTINCT ev.eventDate FROM Event ev WHERE ev.eventDate BETWEEN ?1 and ?2&quot;,Date.class);   </span>
+<span class="nc" id="L262">		query.setParameter(1, firstDayMonthDate);</span>
+<span class="nc" id="L263">		query.setParameter(2, lastDayMonthDate);</span>
+<span class="nc" id="L264">		List&lt;Date&gt; dates = query.getResultList();</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">	 	 for (Date d:dates){</span>
+<span class="nc" id="L266">	 	   System.out.println(d.toString());		 </span>
+<span class="nc" id="L267">		   res.add(d);</span>
+<span class="nc" id="L268">		  }</span>
+<span class="nc" id="L269">	 	return res;</span>
+	}
+	
+	public Erabiltzaile isLogin(String posta, String pasahitza) {
+<span class="nc" id="L273">		Erabiltzaile us = db.find(Erabiltzaile.class, posta);</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">		if (us!=null) {</span>
+<span class="nc bnc" id="L275" title="All 4 branches missed.">		if(us.getPosta().compareTo(posta)==0 &amp;&amp; us.getPasahitza().compareTo(pasahitza)==0)</span>
+<span class="nc" id="L276">			return us;</span>
+		}
+<span class="nc" id="L278">		return null;</span>
+	}
+
+	public int storeUser(Erabiltzaile newUser) {
+		
+		TypedQuery&lt;Bezero&gt; query;
+		
+<span class="nc" id="L285">		query = db.createQuery(&quot;SELECT p from Bezero p WHERE p.posta=?1&quot;, Bezero.class);</span>
+<span class="nc" id="L286">		query.setParameter(1, newUser.getPosta());</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">		if(!query.getResultList().isEmpty()) {</span>
+<span class="nc" id="L288">				return 1;</span>
+		} else {
+<span class="nc" id="L290">			System.out.println(&quot;User created&quot;);</span>
+<span class="nc" id="L291">			db.getTransaction().begin();</span>
+<span class="nc" id="L292">			db.persist(newUser);</span>
+<span class="nc" id="L293">			db.getTransaction().commit();</span>
+<span class="nc" id="L294">			return 0;</span>
+		}
+		
+	}
+	
+public void open(boolean initializeMode){
+		
+<span class="nc" id="L301">		System.out.println(&quot;Opening DataAccess instance =&gt; isDatabaseLocal: &quot;+c.isDatabaseLocal()+&quot; getDatabBaseOpenMode: &quot;+c.getDataBaseOpenMode());</span>
+
+<span class="nc" id="L303">		String fileName=c.getDbFilename();</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">		if (initializeMode) {</span>
+<span class="nc" id="L305">			fileName=fileName+&quot;;drop&quot;;</span>
+<span class="nc" id="L306">			System.out.println(&quot;Deleting the DataBase&quot;);</span>
+		}
+		
+<span class="nc bnc" id="L309" title="All 2 branches missed.">		if (c.isDatabaseLocal()) {</span>
+<span class="nc" id="L310">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb:&quot;+fileName);</span>
+<span class="nc" id="L311">			  db = emf.createEntityManager();</span>
+		} else {
+<span class="nc" id="L313">			Map&lt;String, String&gt; properties = new HashMap&lt;String, String&gt;();</span>
+<span class="nc" id="L314">			  properties.put(&quot;javax.persistence.jdbc.user&quot;, c.getUser());</span>
+<span class="nc" id="L315">			  properties.put(&quot;javax.persistence.jdbc.password&quot;, c.getPassword());</span>
+
+<span class="nc" id="L317">			  emf = Persistence.createEntityManagerFactory(&quot;objectdb://&quot;+c.getDatabaseNode()+&quot;:&quot;+c.getDatabasePort()+&quot;/&quot;+fileName, properties);</span>
+
+<span class="nc" id="L319">			  db = emf.createEntityManager();</span>
+    	   }
+		
+<span class="nc" id="L322">	}</span>
+	
+	public int storeEvent(String deskripzioa, Date data) {
+		
+		TypedQuery&lt;Event&gt; query;
+		
+<span class="nc" id="L328">		query = db.createQuery(&quot;SELECT e from Event e WHERE e.description=?1 AND e.eventDate=?2&quot;, Event.class);</span>
+<span class="nc" id="L329">        query.setParameter(1, deskripzioa);</span>
+<span class="nc" id="L330">        query.setParameter(2, data);</span>
+<span class="nc bnc" id="L331" title="All 2 branches missed.">		if(!query.getResultList().isEmpty()) {</span>
+<span class="nc" id="L332">				return 1;</span>
+		}
+		else {
+<span class="nc" id="L335">			System.out.println(&quot;Event created&quot;);</span>
+<span class="nc" id="L336">			Event gertaera = new Event(deskripzioa, data); </span>
+<span class="nc" id="L337">			db.getTransaction().begin();</span>
+<span class="nc" id="L338">			db.persist(gertaera);</span>
+<span class="nc" id="L339">			db.getTransaction().commit();</span>
+<span class="nc" id="L340">			return 0;</span>
+		}
+		
+	}
+	
+	public Kuota sortuKuota(Question question, String deskripzioa, double pronostikoa) throws KuotaAlreadyExist{
+<span class="nc" id="L346">		System.out.println(&quot;&gt;&gt; DataAccess: createKuota=&gt; question= &quot;+question+&quot; dezkripzioa= &quot;+deskripzioa+&quot; pronostikoa=&quot;+pronostikoa);</span>
+		
+<span class="nc" id="L348">		Question q = db.find(Question.class, question.getQuestionNumber());</span>
+				
+<span class="nc bnc" id="L350" title="All 2 branches missed.">		if (q.DoesKuotaExists(deskripzioa)) throw new KuotaAlreadyExist(&quot;ErrorQueryAlreadyExist&quot;);</span>
+				
+<span class="nc" id="L352">			db.getTransaction().begin();</span>
+<span class="nc" id="L353">			Kuota k = q.addKuota(deskripzioa, pronostikoa);</span>
+<span class="nc" id="L354">			db.getTransaction().commit();</span>
+<span class="nc" id="L355">			return k;</span>
+			
+	}
+	
+	public Apustua sortuApustua(double zenbatekoa, Vector&lt;Kuota&gt; kuota, Erabiltzaile user, Date data, Date firstEventDate) throws DirurikEZ {
+		
+<span class="nc" id="L361">		Erabiltzaile us = db.find(Erabiltzaile.class, user.getPosta());</span>
+//		for (Question q:qN)
+//		if (us.DoesApustuaExists(q)) throw new ApustuaAlreadyExist(&quot;ErrorApustuaAlreadyExist&quot;);
+		
+<span class="nc bnc" id="L365" title="All 2 branches missed.">		if(us.getDiruZorroa()&lt;zenbatekoa)throw new DirurikEZ(&quot;Ez duzu diru nahikorik&quot;);</span>
+		
+<span class="nc" id="L367">		db.getTransaction().begin();</span>
+<span class="nc" id="L368">		Apustua ap = us.addApustu(zenbatekoa, kuota, firstEventDate, data);</span>
+<span class="nc" id="L369">		us.addMugimendu(ap);</span>
+<span class="nc" id="L370">		zenbatekoa=us.getDiruZorroa()-zenbatekoa;</span>
+<span class="nc" id="L371">		us.setDiruZorroa(zenbatekoa);</span>
+<span class="nc" id="L372">		this.recurrent.add(us);</span>
+<span class="nc" id="L373">		System.out.println(&quot;recursive&quot;);</span>
+<span class="nc" id="L374">		apustuErreplikatu(ap, us);</span>
+<span class="nc" id="L375">		System.out.println(&quot;irten&quot;);</span>
+<span class="nc" id="L376">		this.recurrent.removeAllElements();</span>
+<span class="nc" id="L377">		db.getTransaction().commit();</span>
+<span class="nc" id="L378">		return ap;</span>
+			
+	}
+	
+	public void updateQuestion(Integer ID, String result) throws EmaitzaExist {
+		
+<span class="nc" id="L384">		db.getTransaction().begin();</span>
+<span class="nc" id="L385">		Question q = db.find(Question.class, ID);</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">		if(q.getResult().compareTo(result)==0)throw new EmaitzaExist(&quot;Emaitza gordeta dago jada&quot;);</span>
+<span class="nc" id="L387">		q.setResult(result);</span>
+<span class="nc" id="L388">		db.getTransaction().commit();</span>
+<span class="nc" id="L389">		System.out.println(ID + &quot; galdera eguneratua izan da.&quot;);</span>
+
+<span class="nc" id="L391">	}</span>
+	
+	public void updateUser(Erabiltzaile user, double dirua, Date data) {
+		
+<span class="nc" id="L395">		Erabiltzaile us = db.find(Erabiltzaile.class, user.getPosta());</span>
+		
+<span class="nc" id="L397">		db.getTransaction().begin();</span>
+<span class="nc" id="L398">		us.setDiruZorroa(dirua+us.getDiruZorroa());</span>
+<span class="nc" id="L399">		DiruMug a = new DiruMug(dirua, data, user);</span>
+<span class="nc" id="L400">		us.addMugimendu(a);</span>
+<span class="nc" id="L401">		db.getTransaction().commit();</span>
+<span class="nc" id="L402">		System.out.println(user.getPosta() + &quot; erabiltzailea eguneratua izan da.&quot;+dirua);</span>
+
+<span class="nc" id="L404">	}</span>
+	
+	public	boolean	removeApustua (Mugimendu mu, Erabiltzaile user){
+<span class="nc" id="L407">		boolean	em=true;</span>
+		try	{
+<span class="nc" id="L409">			db.getTransaction().begin();</span>
+<span class="nc" id="L410">			Apustua	c=db.find(Apustua.class, mu);</span>
+<span class="nc" id="L411">			Erabiltzaile us = db.find(Erabiltzaile.class, user.getPosta());</span>
+<span class="nc" id="L412">			us.setDiruZorroa(c.getDirua()+us.getDiruZorroa());</span>
+<span class="nc" id="L413">			us.remApustu(c);</span>
+<span class="nc" id="L414">			us.kantzelatuMug(c);</span>
+<span class="nc" id="L415">			db.remove(c);</span>
+<span class="nc" id="L416">			db.getTransaction().commit();</span>
+<span class="nc" id="L417">			System.out.println(&quot;Apustua removed	&quot;+ c.getApustuId());//apustu id</span>
+<span class="nc" id="L418">			}catch(Exception e){</span>
+<span class="nc" id="L419">				e.printStackTrace();</span>
+<span class="nc" id="L420">				em=false;</span>
+<span class="nc" id="L421">			}</span>
+
+<span class="nc" id="L423">		return	em;</span>
+		}	
+	
+	public Erabiltzaile getUser(Erabiltzaile user) {
+<span class="nc" id="L427">		db.getTransaction().begin();</span>
+<span class="nc" id="L428">    	Erabiltzaile em = db.find(Erabiltzaile.class, user.getPosta());</span>
+<span class="nc" id="L429">    	db.getTransaction().commit();</span>
+<span class="nc" id="L430">		return em;</span>
+	}
+	
+	public void erreplikatu(Erabiltzaile user, String posta) throws ErabiltzaileNoExist {
+		
+<span class="nc" id="L435">		Erabiltzaile us =db.find(Erabiltzaile.class, user.getPosta());</span>
+<span class="nc" id="L436">		Erabiltzaile er =db.find(Erabiltzaile.class, posta);</span>
+<span class="nc bnc" id="L437" title="All 2 branches missed.">		if(er==null)throw new ErabiltzaileNoExist(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErNE&quot;));</span>
+<span class="nc" id="L438">		db.getTransaction().begin();</span>
+<span class="nc" id="L439">		er.addReplikatu(us);</span>
+<span class="nc" id="L440">		db.getTransaction().commit();</span>
+				
+<span class="nc" id="L442">	}</span>
+	public void apustuErreplikatu(Apustua ap, Erabiltzaile user) {
+<span class="nc" id="L444">		boolean badago=false;</span>
+<span class="nc" id="L445">		Erabiltzaile us = db.find(Erabiltzaile.class, user.getPosta());</span>
+		
+<span class="nc bnc" id="L447" title="All 2 branches missed.">		for (Erabiltzaile er: us.getReplikatuak()) {</span>
+<span class="nc bnc" id="L448" title="All 2 branches missed.">			for(Erabiltzaile era:this.recurrent) {</span>
+<span class="nc bnc" id="L449" title="All 2 branches missed.">				if (era.getPosta().compareTo(er.getPosta())==0) {</span>
+<span class="nc" id="L450">					badago=true;</span>
+				}
+<span class="nc" id="L452">			}</span>
+<span class="nc bnc" id="L453" title="All 4 branches missed.">			if(!badago &amp;&amp; er.getDiruZorroa()&gt;=ap.getDirua()) {</span>
+<span class="nc" id="L454">				Erabiltzaile gor = db.find(Erabiltzaile.class, er.getPosta());</span>
+<span class="nc" id="L455">				gor.addApustu(ap.getDirua(), ap.getKuota(), ap.getFirstEventDate(), ap.getData());</span>
+<span class="nc" id="L456">				gor.setDiruZorroa(gor.getDiruZorroa()-ap.getDirua());</span>
+<span class="nc" id="L457">				gor.addMugimendu(ap);</span>
+<span class="nc" id="L458">				this.recurrent.add(er);</span>
+<span class="nc" id="L459">				apustuErreplikatu(ap, er);</span>
+			}
+<span class="nc" id="L461">			badago=false;</span>
+<span class="nc" id="L462">		}</span>
+		
+<span class="nc" id="L464">	}</span>
+	
+	public boolean removeUser(Erabiltzaile e) {
+<span class="nc" id="L467">		System.out.println(&quot;&gt;&gt; DataAccessTest: removeErabiltzaile&quot;);</span>
+<span class="nc" id="L468">		Erabiltzaile e1 = db.find(Erabiltzaile.class, e.getPosta());</span>
+<span class="nc bnc" id="L469" title="All 2 branches missed.">		if (e1!=null) {</span>
+<span class="nc" id="L470">			db.getTransaction().begin();</span>
+<span class="nc" id="L471">			db.remove(e1);</span>
+<span class="nc" id="L472">			db.getTransaction().commit();</span>
+<span class="nc" id="L473">			return true;</span>
+		} else 
+<span class="nc" id="L475">		return false;</span>
+    }
+		
+	public void close(){
+<span class="nc" id="L479">		db.close();</span>
+<span class="nc" id="L480">		System.out.println(&quot;DataBase closed&quot;);</span>
+<span class="nc" id="L481">	}</span>
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>index.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">index.java</span></div><h1>index.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+
+import businessLogic.BLFacade;
+import businessLogic.BLFacadeImplementation;
+import configuration.ConfigXML;
+
+import javax.swing.JButton;
+import javax.swing.JRadioButton;
+import javax.swing.UIManager;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.Locale;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
+
+public class index extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+<span class="nc" id="L34">	private final ButtonGroup buttonGroup = new ButtonGroup();</span>
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L40">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L43">					index frame = new index();</span>
+<span class="nc" id="L44">					frame.setVisible(true);</span>
+<span class="nc" id="L45">				} catch (Exception e) {</span>
+<span class="nc" id="L46">					e.printStackTrace();</span>
+<span class="nc" id="L47">				}</span>
+<span class="nc" id="L48">			}</span>
+		});
+<span class="nc" id="L50">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+<span class="nc" id="L55">	public index() {</span>
+<span class="nc" id="L56">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L57">		setBounds(100, 100, 450, 300);</span>
+<span class="nc" id="L58">		contentPane = new JPanel();</span>
+<span class="nc" id="L59">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L60">		setContentPane(contentPane);</span>
+<span class="nc" id="L61">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L63">		final JRadioButton erregistratu = new JRadioButton(&quot;Erregistratu&quot;);</span>
+<span class="nc" id="L64">		buttonGroup.add(erregistratu);</span>
+<span class="nc" id="L65">		erregistratu.setBounds(115, 54, 199, 23);</span>
+<span class="nc" id="L66">		contentPane.add(erregistratu);</span>
+		
+<span class="nc" id="L68">		final JRadioButton login = new JRadioButton(&quot;Login&quot;);</span>
+<span class="nc" id="L69">		buttonGroup.add(login);</span>
+<span class="nc" id="L70">		login.setBounds(115, 91, 128, 23);</span>
+<span class="nc" id="L71">		contentPane.add(login);</span>
+		
+<span class="nc" id="L73">		final JRadioButton rdbtnGonbidatua = new JRadioButton(&quot;Gonbidatua&quot;);</span>
+<span class="nc" id="L74">		buttonGroup.add(rdbtnGonbidatua);</span>
+<span class="nc" id="L75">		rdbtnGonbidatua.setBounds(115, 129, 128, 23);</span>
+<span class="nc" id="L76">		contentPane.add(rdbtnGonbidatua);</span>
+		
+<span class="nc" id="L78">		JButton sartuButton = new JButton(&quot;Sartu&quot;);</span>
+<span class="nc" id="L79">		sartuButton.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">				if (erregistratu.isSelected()) {</span>
+<span class="nc" id="L82">					erreg(arg0);</span>
+				}
+<span class="nc bnc" id="L84" title="All 2 branches missed.">				else if (login.isSelected()) {</span>
+<span class="nc" id="L85">					login(arg0);</span>
+				}
+				
+<span class="nc bnc" id="L88" title="All 2 branches missed.">				else if (rdbtnGonbidatua.isSelected()) {</span>
+<span class="nc" id="L89">					gonbidatu(arg0);			</span>
+				}
+<span class="nc" id="L91">			}</span>
+		});
+<span class="nc" id="L93">		sartuButton.setBounds(137, 172, 106, 35);</span>
+<span class="nc" id="L94">		contentPane.add(sartuButton);</span>
+		
+<span class="nc" id="L96">		JLabel lblAukeratuBat = new JLabel(&quot;AUKERATU BAT&quot;);</span>
+<span class="nc" id="L97">		lblAukeratuBat.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L98">		lblAukeratuBat.setBounds(115, 11, 199, 23);</span>
+<span class="nc" id="L99">		contentPane.add(lblAukeratuBat);</span>
+		
+<span class="nc" id="L101">		JLabel lblNewLabel = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L102">		lblNewLabel.setBounds(96, 227, 199, 23);</span>
+<span class="nc" id="L103">		contentPane.add(lblNewLabel);</span>
+<span class="nc" id="L104">	}</span>
+	
+	public void erreg(ActionEvent arg0) {
+<span class="nc" id="L107">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="nc" id="L109">		System.out.println(c.getLocale());</span>
+		
+<span class="nc" id="L111">		Locale.setDefault(new Locale(c.getLocale()));</span>
+		
+<span class="nc" id="L113">		System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L114">		ErregistratuGUI a = new ErregistratuGUI();</span>
+<span class="nc" id="L115">		a.setVisible(true);</span>
+<span class="nc" id="L116">		this.setVisible(false);</span>
+		
+		try {
+			
+			BLFacade appFacadeInterface;
+//			UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel&quot;);
+//			UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.motif.MotifLookAndFeel&quot;);
+<span class="nc" id="L123">			UIManager.setLookAndFeel(&quot;javax.swing.plaf.metal.MetalLookAndFeel&quot;);</span>
+			
+<span class="nc bnc" id="L125" title="All 2 branches missed.">			if (c.isBusinessLogicLocal()) {</span>
+				
+<span class="nc" id="L127">			 appFacadeInterface=new BLFacadeImplementation();</span>
+				
+				
+			}
+			
+			else { //If remote
+				
+<span class="nc" id="L134">				 String serviceName= &quot;http://&quot;+c.getBusinessLogicNode() +&quot;:&quot;+ c.getBusinessLogicPort()+&quot;/ws/&quot;+c.getBusinessLogicName()+&quot;?wsdl&quot;;</span>
+				 
+				//URL url = new URL(&quot;http://localhost:9999/ws/ruralHouses?wsdl&quot;);
+<span class="nc" id="L137">				URL url = new URL(serviceName);</span>
+
+		 
+		        //1st argument refers to wsdl document above
+				//2nd argument is service name, refer to wsdl document above
+//		        QName qname = new QName(&quot;http://businessLogic/&quot;, &quot;FacadeImplementationWSService&quot;);
+<span class="nc" id="L143">		        QName qname = new QName(&quot;http://businessLogic/&quot;, &quot;BLFacadeImplementationService&quot;);</span>
+		 
+<span class="nc" id="L145">		        Service service = Service.create(url, qname);</span>
+		 
+<span class="nc" id="L147">		         appFacadeInterface = service.getPort(BLFacade.class);</span>
+			} 
+			/*if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) 
+				appFacadeInterface.initializeBD();
+				*/
+<span class="nc" id="L152">			MainGUI.setBussinessLogic(appFacadeInterface);</span>
+
+<span class="nc" id="L154">		}catch (Exception e) {</span>
+			//a.jLabelSelectOption.setText(&quot;Error: &quot;+e.toString());
+			//a.jLabelSelectOption.setForeground(Color.RED);		
+<span class="nc" id="L157">			System.out.println(&quot;Error in ApplicationLauncher: &quot;+e.toString());</span>
+<span class="nc" id="L158">		}</span>
+		//a.pack();
+<span class="nc" id="L160">	}</span>
+	public void login(ActionEvent arg0) {
+
+<span class="nc" id="L163">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="nc" id="L165">		System.out.println(c.getLocale());</span>
+		
+<span class="nc" id="L167">		Locale.setDefault(new Locale(c.getLocale()));</span>
+		
+<span class="nc" id="L169">		System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L170">		LoginGUI a = new LoginGUI();</span>
+<span class="nc" id="L171">		a.setVisible(true);</span>
+<span class="nc" id="L172">		this.setVisible(false);</span>
+		try {
+			
+			BLFacade appFacadeInterface;
+//			UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel&quot;);
+//			UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.motif.MotifLookAndFeel&quot;);
+<span class="nc" id="L178">			UIManager.setLookAndFeel(&quot;javax.swing.plaf.metal.MetalLookAndFeel&quot;);</span>
+			
+<span class="nc bnc" id="L180" title="All 2 branches missed.">			if (c.isBusinessLogicLocal()) {</span>
+				
+<span class="nc" id="L182">			 appFacadeInterface=new BLFacadeImplementation();</span>
+				
+				
+			}
+			
+			else { //If remote
+				
+<span class="nc" id="L189">				 String serviceName= &quot;http://&quot;+c.getBusinessLogicNode() +&quot;:&quot;+ c.getBusinessLogicPort()+&quot;/ws/&quot;+c.getBusinessLogicName()+&quot;?wsdl&quot;;</span>
+				 
+				//URL url = new URL(&quot;http://localhost:9999/ws/ruralHouses?wsdl&quot;);
+<span class="nc" id="L192">				URL url = new URL(serviceName);</span>
+
+		 
+		        //1st argument refers to wsdl document above
+				//2nd argument is service name, refer to wsdl document above
+//		        QName qname = new QName(&quot;http://businessLogic/&quot;, &quot;FacadeImplementationWSService&quot;);
+<span class="nc" id="L198">		        QName qname = new QName(&quot;http://businessLogic/&quot;, &quot;BLFacadeImplementationService&quot;);</span>
+		 
+<span class="nc" id="L200">		        Service service = Service.create(url, qname);</span>
+		 
+<span class="nc" id="L202">		         appFacadeInterface = service.getPort(BLFacade.class);</span>
+			} 
+			/*if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) 
+				appFacadeInterface.initializeBD();
+				*/
+<span class="nc" id="L207">			MainGUI.setBussinessLogic(appFacadeInterface);</span>
+
+<span class="nc" id="L209">		}catch (Exception e) {</span>
+			//a.jLabelSelectOption.setText(&quot;Error: &quot;+e.toString());
+			//a.jLabelSelectOption.setForeground(Color.RED);		
+<span class="nc" id="L212">			System.out.println(&quot;Error in ApplicationLauncher: &quot;+e.toString());</span>
+<span class="nc" id="L213">		}</span>
+		//a.pack();
+<span class="nc" id="L215">	}</span>
+	public void gonbidatu(ActionEvent arg0) {
+
+<span class="nc" id="L218">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="nc" id="L220">		System.out.println(c.getLocale());</span>
+		
+<span class="nc" id="L222">		Locale.setDefault(new Locale(c.getLocale()));</span>
+		
+<span class="nc" id="L224">		System.out.println(&quot;Locale: &quot;+Locale.getDefault());</span>
+<span class="nc" id="L225">		gonbidatuaGUI a = new gonbidatuaGUI();</span>
+<span class="nc" id="L226">		a.setVisible(true);</span>
+<span class="nc" id="L227">		this.setVisible(false);</span>
+		
+		try {
+			
+			BLFacade appFacadeInterface;
+//			UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel&quot;);
+//			UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.motif.MotifLookAndFeel&quot;);
+<span class="nc" id="L234">			UIManager.setLookAndFeel(&quot;javax.swing.plaf.metal.MetalLookAndFeel&quot;);</span>
+			
+<span class="nc bnc" id="L236" title="All 2 branches missed.">			if (c.isBusinessLogicLocal()) {</span>
+				
+<span class="nc" id="L238">			 appFacadeInterface=new BLFacadeImplementation();</span>
+				
+				
+			}
+			
+			else { //If remote
+				
+<span class="nc" id="L245">				 String serviceName= &quot;http://&quot;+c.getBusinessLogicNode() +&quot;:&quot;+ c.getBusinessLogicPort()+&quot;/ws/&quot;+c.getBusinessLogicName()+&quot;?wsdl&quot;;</span>
+				 
+				//URL url = new URL(&quot;http://localhost:9999/ws/ruralHouses?wsdl&quot;);
+<span class="nc" id="L248">				URL url = new URL(serviceName);</span>
+
+		 
+		        //1st argument refers to wsdl document above
+				//2nd argument is service name, refer to wsdl document above
+//		        QName qname = new QName(&quot;http://businessLogic/&quot;, &quot;FacadeImplementationWSService&quot;);
+<span class="nc" id="L254">		        QName qname = new QName(&quot;http://businessLogic/&quot;, &quot;BLFacadeImplementationService&quot;);</span>
+		 
+<span class="nc" id="L256">		        Service service = Service.create(url, qname);</span>
+		 
+<span class="nc" id="L258">		         appFacadeInterface = service.getPort(BLFacade.class);</span>
+			} 
+			/*if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) 
+				appFacadeInterface.initializeBD();
+				*/
+<span class="nc" id="L263">			MainGUI.setBussinessLogic(appFacadeInterface);</span>
+
+<span class="nc" id="L265">		}catch (Exception e) {</span>
+<span class="nc" id="L266">			a.jLabelSelectOption.setText(&quot;Error: &quot;+e.toString());</span>
+			//a.jLabelSelectOption.setForeground(Color.RED);		
+<span class="nc" id="L268">			System.out.println(&quot;Error in ApplicationLauncher: &quot;+e.toString());</span>
+<span class="nc" id="L269">		}</span>
+		//a.pack();
+<span class="nc" id="L271">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

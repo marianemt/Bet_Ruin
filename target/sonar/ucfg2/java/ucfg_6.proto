@@ -1,0 +1,75 @@
+
+XdataAccess.DataAccess#isLogin(Ljava/lang/String;Ljava/lang/String;)Ldomain/Erabiltzaile;R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaê ê("5* 
+2R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaî
+ î("q
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaî î(
+
+usdomain.Erabiltzaile*§
+3R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaì* ì(,“œ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaì* ì(;
+%4java.lang.String"4domain.Erabiltzaile#getPasahitza()Ljava/lang/String;*
+
+usdomain.Erabiltzaile2getPasahitza()ÌÍ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaì* ì(P	
+%5int"/java.lang.String#compareTo(Ljava/lang/String;)I*
+
+%4java.lang.String*
+
+	pasahitzajava.lang.String2compareTo(Ljava/lang/String;)*
+2
+1*ò
+4R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaì ì( «
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaì ì(
+%2java.lang.String"0domain.Erabiltzaile#getPosta()Ljava/lang/String;*
+
+usdomain.Erabiltzaile2
+getPosta()ÈÊ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaì ì(#	
+%3int"/java.lang.String#compareTo(Ljava/lang/String;)I*
+
+%2java.lang.String*
+
+postajava.lang.String2compareTo(Ljava/lang/String;)*
+3
+1*Ï
+5R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaë ë(ß
+§
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaë ë(%
+%0javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db»≈
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaë ë(6
+%1domain.Erabiltzaile"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%0javax.persistence.EntityManager*
+""*
+
+postajava.lang.String2)find(Ljava/lang/Class;Ljava/lang/Object;)ï
+í
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaë ë(7
+usdomain.Erabiltzaile"__id*
+
+%1domain.Erabiltzaile*
+4
+1*µ
+1R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javañ	 ñ("\
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javañ ñ(
+"":
+postajava.lang.String:
+	pasahitzajava.lang.StringB
+dataAccess.DataAccess

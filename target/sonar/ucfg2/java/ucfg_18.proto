@@ -1,0 +1,105 @@
+
+8dataAccess.DataAccess#removeUser(Ldomain/Erabiltzaile;)ZR
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÒ Ò("3*
+2R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÖ Ö(§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÖ Ö(%
+%5javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db”‘
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÖ Ö()
+%6#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*'
+%
+%5javax.persistence.EntityManager2getTransaction()ÇÄ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÖ Ö(
+
+%7void",javax.persistence.EntityTransaction#begin()V*+
+)
+%6#javax.persistence.EntityTransaction2begin()§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java× ×(%
+%8javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db‚ÿ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.java× ×(
+
+%9void";javax.persistence.EntityManager#remove(Ljava/lang/Object;)V*'
+%
+%8javax.persistence.EntityManager*
+
+e1domain.Erabiltzaile2remove(Ljava/lang/Object;)¨
+¥
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaØ Ø(&
+%10javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+db–“
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaØ Ø(*
+%11#javax.persistence.EntityTransaction"Ujavax.persistence.EntityManager#getTransaction()Ljavax/persistence/EntityTransaction;*(
+&
+%10javax.persistence.EntityManager2getTransaction()ËÈ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaØ Ø(
+%12void"-javax.persistence.EntityTransaction#commit()V*,
+*
+%11#javax.persistence.EntityTransaction2commit()"\
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÙ Ù(
+""*³
+
+3R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÓ Ó(
+}
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÓ Ó(
+%0java.io.PrintStream"__id*
+""ú÷
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÓ Ó(=
+
+%1void"0java.io.PrintStream#println(Ljava/lang/String;)V*
+
+%0java.io.PrintStream*)'
+%>> DataAccessTest: removeErabiltzaile2println(Ljava/lang/String;)§
+¤
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÔ Ô(%
+%2javax.persistence.EntityManager"__id*!*
+dataAccess.DataAccess"
+dbÉÆ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÔ0 Ô(<
+%3java.lang.String"0domain.Erabiltzaile#getPosta()Ljava/lang/String;*
+
+edomain.Erabiltzaile2
+getPosta()ÅÂ
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÔ Ô(=
+%4domain.Erabiltzaile"[javax.persistence.EntityManager#find(Ljava/lang/Class;Ljava/lang/Object;)Ljava/lang/Object;*'
+%
+%2javax.persistence.EntityManager*
+""*
+
+%3java.lang.String2)find(Ljava/lang/Class;Ljava/lang/Object;)•
+’
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÔ Ô(>
+e1domain.Erabiltzaile"__id*
+
+%4domain.Erabiltzaile*
+2
+1*µ
+1R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÛ	 Û("\
+R
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/dataAccess/DataAccess.javaÛ Û(
+"":
+edomain.ErabiltzaileB
+dataAccess.DataAccess

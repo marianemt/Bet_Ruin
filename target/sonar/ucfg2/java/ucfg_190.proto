@@ -1,0 +1,96 @@
+
+dbusinessLogic.BLFacadeImplementation#createKuota(Ldomain/Question;Ljava/lang/String;D)Ldomain/Kuota;a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java° °("startingBlock*ù
+startingBlocka
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java° °(W∞
+≠
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java† †(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+questiondomain.Questionô
+ñ
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java°& °(.
+questiondomain.Question"__annotation*
+
+%6¥
+±
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java† †(
+%7"
+__annotate*
+javax.jws.WebMethod*!
+
+deskripzioajava.lang.Stringù
+ö
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java°7 °(B
+deskripzioajava.lang.String"__annotation*
+
+%7*
+1*¡
+1a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java£ £(¬
+ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java£ £(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager¬ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java£ £(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)á
+Ñ
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java• •(
+kdomain.Kuota"__id*
+""¬
+ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaß ß(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÎË
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaß ß(=
+%3domain.Kuota"TdataAccess.DataAccess#sortuKuota(Ldomain/Question;Ljava/lang/String;D)Ldomain/Kuota;*
+
+%2dataAccess.DataAccess*
+
+questiondomain.Question*!
+
+deskripzioajava.lang.String*
+""20sortuKuota(Ldomain/Question;Ljava/lang/String;D)ï
+í
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javaß ß(=
+kdomain.Kuota"__id*
+
+%3domain.Kuota¬
+ø
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java© ©(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager∫∑
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java© ©(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"x
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java´ ´(
+
+kdomain.Kuota:
+questiondomain.Question:
+deskripzioajava.lang.String:
+""B(&
+$businessLogic.BLFacadeImplementation

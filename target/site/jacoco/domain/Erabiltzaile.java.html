@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Erabiltzaile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Erabiltzaile.java</span></div><h1>Erabiltzaile.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Vector;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso ({Bezero.class, Admin.class})
+@Entity
+public abstract class Erabiltzaile implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	private String izena;
+	private String abizena;
+	private int adina;
+	
+	@XmlID @Id
+	private String posta;
+	private String pasahitza;
+	private double diruZorroa;
+<span class="pc" id="L27">	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)</span>
+	private Vector&lt;Apustua&gt; apustuak = new Vector&lt;Apustua&gt;();
+<span class="pc" id="L29">	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)</span>
+	private Vector&lt;Mugimendu&gt; mugimenduak = new Vector&lt;Mugimendu&gt;();
+<span class="pc" id="L31">	private Vector&lt;Erabiltzaile&gt;replikatuak = new Vector&lt;Erabiltzaile&gt;();</span>
+	
+	public Erabiltzaile() {
+<span class="nc" id="L34">		super();</span>
+<span class="nc" id="L35">	}</span>
+	
+<span class="fc" id="L37">	public Erabiltzaile(String izena, String abizena, int adina, String posta, String pasahitza) {</span>
+<span class="fc" id="L38">		this.izena=izena;</span>
+<span class="fc" id="L39">		this.abizena=abizena;</span>
+<span class="fc" id="L40">		this.adina=adina;</span>
+<span class="fc" id="L41">		this.posta=posta;</span>
+<span class="fc" id="L42">		this.pasahitza=pasahitza;</span>
+<span class="fc" id="L43">		this.diruZorroa=0.0;</span>
+<span class="fc" id="L44">	}</span>
+	
+	public String getIzena() {
+<span class="nc" id="L47">		return this.izena;</span>
+	}
+	public void setIzena(String izena) {
+<span class="nc" id="L50">		this.izena=izena;</span>
+<span class="nc" id="L51">	}</span>
+	
+	public String getAbizena() {
+<span class="nc" id="L54">		return this.abizena;</span>
+	}
+	public void setAbizena(String abizena) {
+<span class="nc" id="L57">		this.abizena=abizena;</span>
+<span class="nc" id="L58">	}</span>
+	
+	public int getAdina() {
+<span class="nc" id="L61">		return this.adina;</span>
+	}
+	public void setAdina(int adina) {
+<span class="nc" id="L64">		this.adina=adina;</span>
+<span class="nc" id="L65">	}</span>
+	
+	public String getPosta() {
+<span class="nc" id="L68">		return this.posta;</span>
+	}
+	public void setPosta(String posta) {
+<span class="nc" id="L71">		this.posta=posta;</span>
+<span class="nc" id="L72">	}</span>
+	
+	public String getPasahitza() {
+<span class="nc" id="L75">		return this.pasahitza;</span>
+	}
+	public void setPasahitza(String pasahitza) {
+<span class="nc" id="L78">		this.pasahitza=pasahitza;</span>
+<span class="nc" id="L79">	}</span>
+	
+	public double getDiruZorroa() {
+<span class="nc" id="L82">		return this.diruZorroa;</span>
+	}
+	public void setDiruZorroa(double dirua) {
+<span class="nc" id="L85">		this.diruZorroa=dirua;</span>
+<span class="nc" id="L86">	}</span>
+	
+	public Vector&lt;Apustua&gt; getApustua() {
+<span class="nc" id="L89">		return this.apustuak;</span>
+	}
+
+	public void setApustua(Vector&lt;Apustua&gt; apustuak) {
+<span class="nc" id="L93">		this.apustuak = apustuak;</span>
+<span class="nc" id="L94">	}</span>
+	
+	public Apustua addApustu(double zenbatekoa, Vector&lt;Kuota&gt; kuota, Date firstEventDate, Date data)  {
+<span class="nc" id="L97">        Apustua ap=new Apustua(zenbatekoa, kuota, firstEventDate, data, this);</span>
+<span class="nc" id="L98">        this.apustuak.add(ap);</span>
+<span class="nc" id="L99">        return ap;</span>
+	}
+
+	
+/*	public boolean DoesApustuaExists(Question q)  {	
+		for (Kuota k: q.getKuota()){
+			for (Apustua ap:this.getApustua()){
+				for (Kuota kn:ap.getKuota()){
+					if (kn.getkuotaID()==k.getkuotaID())
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	*/
+	public Vector&lt;Mugimendu&gt; getMugimeduak() {
+<span class="nc" id="L116">		return this.mugimenduak;</span>
+	}
+
+	public void setMugimenduak(Vector&lt;Mugimendu&gt; mugimenduak) {
+<span class="nc" id="L120">		this.mugimenduak = mugimenduak;</span>
+<span class="nc" id="L121">	}</span>
+	
+	public Mugimendu addMugimendu(Mugimendu mu)  {
+<span class="nc" id="L124">        this.mugimenduak.add(mu);</span>
+<span class="nc" id="L125">        return mu;</span>
+	}
+	
+	public boolean remApustu(Apustua ap) {
+<span class="nc" id="L129">		return this.apustuak.remove(ap);</span>
+	}
+	public boolean kantzelatuMug(Mugimendu mug) {
+<span class="nc" id="L132">		Date data= new Date();</span>
+<span class="nc" id="L133">		Mugimendu mu = new Mugimendu(data, mug.getDirua(), this);</span>
+<span class="nc" id="L134">		this.addMugimendu(mu);</span>
+<span class="nc" id="L135">		return this.mugimenduak.remove(mug);</span>
+	}
+	
+	public Vector&lt;Erabiltzaile&gt; getReplikatuak() {
+<span class="nc" id="L139">		return this.replikatuak;</span>
+	}
+
+	public void setReplikatuak(Vector&lt;Erabiltzaile&gt; replikatuak) {
+<span class="nc" id="L143">		this.replikatuak = replikatuak;</span>
+<span class="nc" id="L144">	}</span>
+	
+	public boolean addReplikatu(Erabiltzaile erreplikatu)  {
+<span class="nc" id="L147">        return this.replikatuak.add(erreplikatu);</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

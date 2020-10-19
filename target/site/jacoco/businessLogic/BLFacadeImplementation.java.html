@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BLFacadeImplementation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">businessLogic</a> &gt; <span class="el_source">BLFacadeImplementation.java</span></div><h1>BLFacadeImplementation.java</h1><pre class="source lang-java linenums">package businessLogic;
+
+import java.util.Date;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import configuration.ConfigXML;
+import dataAccess.DataAccess;
+import domain.Question;
+import domain.Apustua;
+import domain.Erabiltzaile;
+import domain.Event;
+import domain.Kuota;
+import domain.Mugimendu;
+import exceptions.DirurikEZ;
+import exceptions.EmaitzaExist;
+import exceptions.ErabiltzaileNoExist;
+import exceptions.EventFinished;
+import exceptions.KuotaAlreadyExist;
+import exceptions.QuestionAlreadyExist;
+
+/**
+ * It implements the business logic as a web service.
+ */
+@WebService(endpointInterface = &quot;businessLogic.BLFacade&quot;)
+public class BLFacadeImplementation  implements BLFacade {
+	DataAccess dbManager;
+	
+<span class="nc" id="L32">	public BLFacadeImplementation()  {		</span>
+<span class="nc" id="L33">		System.out.println(&quot;Creating BLFacadeImplementation instance&quot;);</span>
+<span class="nc" id="L34">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="nc bnc" id="L36" title="All 2 branches missed.">		if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) {</span>
+<span class="nc" id="L37">			dbManager=new DataAccess(c.getDataBaseOpenMode().equals(&quot;initialize&quot;));</span>
+<span class="nc" id="L38">			dbManager.initializeDB();</span>
+<span class="nc" id="L39">			dbManager.close();</span>
+			}
+	
+<span class="nc" id="L42">	}</span>
+	
+<span class="fc" id="L44">	public BLFacadeImplementation(DataAccess da)  {</span>
+		
+<span class="fc" id="L46">		System.out.println(&quot;Creating BLFacadeImplementation instance with DataAccess parameter&quot;);</span>
+<span class="fc" id="L47">		ConfigXML c=ConfigXML.getInstance();</span>
+		
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		if (c.getDataBaseOpenMode().equals(&quot;initialize&quot;)) {</span>
+<span class="nc" id="L50">			da.open(true);</span>
+<span class="nc" id="L51">			da.initializeDB();</span>
+<span class="nc" id="L52">			da.close();</span>
+
+		}
+<span class="fc" id="L55">		dbManager=da;		</span>
+<span class="fc" id="L56">	}</span>
+	
+	
+	/**
+	 * This method creates a question for an event, with a question text and the minimum bet
+	 * 
+	 * @param event to which question is added
+	 * @param question text of the question
+	 * @param betMinimum minimum quantity of the bet
+	 * @return the created question, or null, or an exception
+	 * @throws EventFinished if current data is after data of the event
+ 	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 */
+   @WebMethod
+   public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
+	   
+	    //The minimum bed must be greater than 0
+<span class="nc" id="L73">	   dbManager.open(false);</span>
+<span class="nc" id="L74">		Question qry=null;</span>
+		
+	    
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		if(new Date().compareTo(event.getEventDate())&gt;0)</span>
+<span class="nc" id="L78">			throw new EventFinished(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;ErrorEventHasFinished&quot;));</span>
+				
+		
+<span class="nc" id="L81">		 qry=dbManager.createQuestion(event,question,betMinimum);		</span>
+
+<span class="nc" id="L83">		dbManager.close();</span>
+		
+<span class="nc" id="L85">		return qry;</span>
+   };
+	
+	/**
+	 * This method invokes the data access to retrieve the events of a given date 
+	 * 
+	 * @param date in which events are retrieved
+	 * @return collection of events
+	 */
+    @WebMethod	
+	public Vector&lt;Event&gt; getEvents(Date date)  {
+<span class="nc" id="L96">    	dbManager.open(false);</span>
+
+<span class="nc" id="L98">		Vector&lt;Event&gt;  events=dbManager.getEvents(date);</span>
+<span class="nc" id="L99">		dbManager.close();</span>
+<span class="nc" id="L100">		return events;</span>
+	}
+
+    
+	/**
+	 * This method invokes the data access to retrieve the dates a month for which there are events
+	 * 
+	 * @param date of the month for which days with events want to be retrieved 
+	 * @return collection of dates
+	 */
+	@WebMethod public Vector&lt;Date&gt; getEventsMonth(Date date) {
+<span class="nc" id="L111">		dbManager.open(false);</span>
+
+<span class="nc" id="L113">		Vector&lt;Date&gt;  dates=dbManager.getEventsMonth(date);</span>
+<span class="nc" id="L114">		dbManager.close();</span>
+<span class="nc" id="L115">		return dates;</span>
+	}
+	
+	
+	
+
+	/**
+	 * This method invokes the data access to initialize the database with some events and questions.
+	 * It is invoked only when the option &quot;initialize&quot; is declared in the tag dataBaseOpenMode of resources/config.xml file
+	 */	
+    @WebMethod	
+	 public void initializeBD(){
+<span class="nc" id="L127">    	dbManager.open(false);</span>
+
+<span class="nc" id="L129">		dbManager.initializeDB();</span>
+<span class="nc" id="L130">		dbManager.close();</span>
+<span class="nc" id="L131">	}</span>
+    
+    @WebMethod
+    public Erabiltzaile isLogin(String posta, String pasahitza) {
+<span class="fc" id="L135">    	dbManager.open(false);</span>
+
+<span class="fc" id="L137">    	Erabiltzaile log = dbManager.isLogin(posta, pasahitza);</span>
+<span class="fc" id="L138">		dbManager.close();</span>
+<span class="fc" id="L139">		return log;</span>
+    }
+    
+    @WebMethod
+    public int storeUser(Erabiltzaile newUser) {
+<span class="nc" id="L144">    	dbManager.open(false);</span>
+
+<span class="nc" id="L146">    	int erreg = dbManager.storeUser(newUser);</span>
+<span class="nc" id="L147">		dbManager.close();</span>
+<span class="nc" id="L148">		return erreg;</span>
+    }
+    
+    @WebMethod
+    public int storeEvent(String deskripzioa, Date data) {
+<span class="nc" id="L153">    	dbManager.open(false);</span>
+
+<span class="nc" id="L155">    	int event = dbManager.storeEvent(deskripzioa, data);</span>
+<span class="nc" id="L156">		dbManager.close();</span>
+<span class="nc" id="L157">		return event;</span>
+    }
+    
+    @WebMethod 
+    public Kuota createKuota(Question question, String deskripzioa, double pronostikoa) throws KuotaAlreadyExist{
+    	 //The minimum bed must be greater than 0
+<span class="nc" id="L163">    	dbManager.open(false);</span>
+
+<span class="nc" id="L165">		Kuota k=null;</span>
+		
+<span class="nc" id="L167">		 k=dbManager.sortuKuota(question, deskripzioa, pronostikoa);		</span>
+
+<span class="nc" id="L169">		dbManager.close();</span>
+		
+<span class="nc" id="L171">		return k;</span>
+    };
+    @WebMethod
+    public Apustua sortuApustua(double zenbatekoa, Vector&lt;Kuota&gt; kuota, Erabiltzaile user, Date data, Date firstEventDate) throws DirurikEZ{
+    	
+<span class="nc" id="L176">    	dbManager.open(false);</span>
+
+<span class="nc" id="L178">    	Apustua ap=null;</span>
+ 		
+<span class="nc" id="L180"> 		 ap=dbManager.sortuApustua(zenbatekoa, kuota, user, data, firstEventDate);</span>
+
+<span class="nc" id="L182"> 		dbManager.close();</span>
+ 		
+<span class="nc" id="L184"> 		return ap;</span>
+    };
+    @WebMethod
+    public void updateQuestion(Integer ID, String result) throws EmaitzaExist {
+<span class="nc" id="L188">    	dbManager.open(false);</span>
+
+<span class="nc" id="L190">    	 dbManager.updateQuestion(ID, result);;</span>
+<span class="nc" id="L191">    	 dbManager.close();</span>
+<span class="nc" id="L192">    }</span>
+    @WebMethod
+    public void updateUser(Erabiltzaile user, double dirua, Date data) {
+<span class="nc" id="L195">    	dbManager.open(false);</span>
+
+<span class="nc" id="L197">    	 dbManager.updateUser(user, dirua, data);</span>
+<span class="nc" id="L198">    	 dbManager.close();</span>
+<span class="nc" id="L199">    }</span>
+
+    @WebMethod
+    public	boolean	removeApustua (Mugimendu mu, Erabiltzaile user) {
+<span class="nc" id="L203">    	dbManager.open(false);</span>
+
+<span class="nc" id="L205">    	boolean em = dbManager.removeApustua(mu, user);</span>
+<span class="nc" id="L206">    	dbManager.close();</span>
+<span class="nc" id="L207">		return em;</span>
+    }
+
+    @WebMethod
+	public Erabiltzaile getUser(Erabiltzaile user) {
+<span class="nc" id="L212">    	dbManager.open(false);</span>
+
+<span class="nc" id="L214">    	Erabiltzaile em = dbManager.getUser(user);</span>
+<span class="nc" id="L215">    	dbManager.close();</span>
+<span class="nc" id="L216">		return em;</span>
+	}
+	
+    @WebMethod
+	public void erreplikatu(Erabiltzaile user, String posta) throws ErabiltzaileNoExist {
+<span class="nc" id="L221">    	dbManager.open(false);</span>
+
+<span class="nc" id="L223">    	dbManager.erreplikatu(user, posta);</span>
+<span class="nc" id="L224">		dbManager.close();</span>
+<span class="nc" id="L225">	}</span>
+	
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

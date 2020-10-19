@@ -1,0 +1,72 @@
+
+RbusinessLogic.BLFacadeImplementation#getEvents(Ljava/util/Date;)Ljava/util/Vector;_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java_ _("startingBlock*∂
+startingBlock_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java_ _(*©
+¶
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java^ ^(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+datejava.util.Dateí
+è
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java_% _()
+datejava.util.Date"__annotation*
+
+%6*
+1*È
+1_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java` `(¿
+Ω
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java` `(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager¿Ω
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java` `(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)¿
+Ω
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javab b(!
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManageróî
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javab b(1
+%3java.util.Vector"CdataAccess.DataAccess#getEvents(Ljava/util/Date;)Ljava/util/Vector;*
+
+%2dataAccess.DataAccess*
+
+datejava.util.Date2getEvents(Ljava/util/Date;)†
+ù
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javab b(2
+eventsjava.util.Vector"__id*
+
+%3java.util.Vector¿
+Ω
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javac c(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManager∏µ
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javac c(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"
+_
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.javad d(
+
+eventsjava.util.Vector:
+datejava.util.DateB(&
+$businessLogic.BLFacadeImplementation

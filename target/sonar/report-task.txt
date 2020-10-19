@@ -1,0 +1,7 @@
+organization=marianemt
+projectKey=Bets2:Bets2
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.13455
+dashboardUrl=https://sonarcloud.io/dashboard?id=Bets2%3ABets2
+ceTaskId=AXVCT-adW6RL6b7cYjge
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXVCT-adW6RL6b7cYjge

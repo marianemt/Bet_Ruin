@@ -1,0 +1,130 @@
+
+‹businessLogic.BLFacadeImplementation#sortuApustua(DLjava/util/Vector;Ldomain/Erabiltzaile;Ljava/util/Date;Ljava/util/Date;)Ldomain/Apustua;a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java® ®("startingBlock*¯
+startingBlocka
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java® ®(z®
+«
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java­ ­(
+%6"
+__annotate*
+javax.jws.WebMethod*
+
+kuotajava.util.Vector—
+”
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java®A ®(F
+kuotajava.util.Vector"__annotation*
+
+%6°
+­
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java­ ­(
+%7"
+__annotate*
+javax.jws.WebMethod*
+
+userdomain.Erabiltzaile™
+–
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java®U ®(Y
+userdomain.Erabiltzaile"__annotation*
+
+%7«
+¨
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java­ ­(
+%8"
+__annotate*
+javax.jws.WebMethod*
+
+datajava.util.Date”
+‘
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java®` ®(d
+datajava.util.Date"__annotation*
+
+%8µ
+²
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java­ ­(
+%9"
+__annotate*
+javax.jws.WebMethod*"
+ 
+firstEventDatejava.util.Datež
+›
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java®k ®(y 
+firstEventDatejava.util.Date"__annotation*
+
+%9*
+1*Ô
+1a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java° °(Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java° °(
+%0dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerÂ¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java° °(
+
+%1void"dataAccess.DataAccess#open(Z)V*
+
+%0dataAccess.DataAccess*
+""2open(Z)Š
+‡
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java² ²(
+apdomain.Apustua"__id*
+""Â
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java´ ´(
+%2dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManageróð
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java´ ´(L
+%3domain.Apustua"|dataAccess.DataAccess#sortuApustua(DLjava/util/Vector;Ldomain/Erabiltzaile;Ljava/util/Date;Ljava/util/Date;)Ldomain/Apustua;*
+
+%2dataAccess.DataAccess*
+""*
+
+kuotajava.util.Vector*
+
+userdomain.Erabiltzaile*
+
+datajava.util.Date*"
+ 
+firstEventDatejava.util.Date2VsortuApustua(DLjava/util/Vector;Ldomain/Erabiltzaile;Ljava/util/Date;Ljava/util/Date;)š
+—
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java´ ´(L
+apdomain.Apustua"__id*
+
+%3domain.ApustuaÂ
+¿
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java¶ ¶(
+%4dataAccess.DataAccess"__id*7*5&
+$businessLogic.BLFacadeImplementation"
+	dbManagerº·
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java¶ ¶(
+
+%5void"dataAccess.DataAccess#close()V*
+
+%4dataAccess.DataAccess2close()"{
+a
+UC:/Users/Mariane/git/Bet_Ruin/src/main/java/businessLogic/BLFacadeImplementation.java¸ ¸(
+
+apdomain.Apustua:
+"":
+kuotajava.util.Vector:
+userdomain.Erabiltzaile:
+datajava.util.Date: 
+firstEventDatejava.util.DateB(&
+$businessLogic.BLFacadeImplementation

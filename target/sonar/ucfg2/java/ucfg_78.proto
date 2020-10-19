@@ -1,0 +1,44 @@
+
+Agui.KuotakjarriGUI#getToday(Ljava/lang/String;)Ljava/lang/String;O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.javaØ Ø("1*Ã	
+1O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java∞ ∞(yw
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java∞ ∞(
+%0java.util.Date"java.util.Dateå
+â
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java∞ ∞(
+%1"java.util.Date#<init>()V*
+
+%0java.util.Dateä
+á
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java∞ ∞(
+datejava.util.Date"__id*
+
+%0java.util.Dateíè
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java± ±( 
+%2java.text.SimpleDateFormat"java.text.SimpleDateFormat‘
+—
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java±	 ±(%
+%3"6java.text.SimpleDateFormat#<init>(Ljava/lang/String;)V*"
+ 
+%2java.text.SimpleDateFormat*
+
+formatjava.lang.StringÖÇ
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java±	 ±(2
+%4java.lang.String"?java.text.DateFormat#format(Ljava/util/Date;)Ljava/lang/String;*"
+ 
+%2java.text.SimpleDateFormat*
+
+datejava.util.Date2format(Ljava/util/Date;)"k
+O
+CC:/Users/Mariane/git/Bet_Ruin/src/main/java/gui/KuotakjarriGUI.java± ±(3
+
+%4java.lang.String:
+formatjava.lang.StringB"
+gui.KuotakjarriGUI

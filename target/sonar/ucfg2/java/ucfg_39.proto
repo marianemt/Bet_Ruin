@@ -1,0 +1,18 @@
+
+Fdomain.IntegerAdapter#unmarshal(Ljava/lang/String;)Ljava/lang/Integer;P
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/IntegerAdapter.java ("1*ú
+1P
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/IntegerAdapter.java (Á
+¾
+P
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/IntegerAdapter.java ("	
+%0int"/java.lang.Integer#parseInt(Ljava/lang/String;)I*"
+java.lang.Integer*
+
+sjava.lang.String"_
+P
+FC:/Users/Mariane/git/Bet_Ruin/src/main/java/domain/IntegerAdapter.java (#
+	
+%0int:
+sjava.lang.StringB
+domain.IntegerAdapter

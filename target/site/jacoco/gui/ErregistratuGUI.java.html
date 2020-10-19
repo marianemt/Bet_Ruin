@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ErregistratuGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Bets2</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">ErregistratuGUI.java</span></div><h1>ErregistratuGUI.java</h1><pre class="source lang-java linenums">package gui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import domain.Bezero;
+import domain.Erabiltzaile;
+
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+
+public class ErregistratuGUI extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField izenaField;
+	private JTextField abizenaField;
+	private JTextField adinaField;
+	private JTextField postaField;
+	private JPasswordField pasahitzaField;
+	private JLabel erroreLB;
+	private JPasswordField passKonpField;
+	private JTextField postaKonpField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L43">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L46">					ErregistratuGUI frame = new ErregistratuGUI();</span>
+<span class="nc" id="L47">					frame.setVisible(true);</span>
+<span class="nc" id="L48">				} catch (Exception e) {</span>
+<span class="nc" id="L49">					e.printStackTrace();</span>
+<span class="nc" id="L50">				}</span>
+<span class="nc" id="L51">			}</span>
+		});
+<span class="nc" id="L53">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+<span class="nc" id="L58">	public ErregistratuGUI() {</span>
+<span class="nc" id="L59">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L60">		setBounds(100, 100, 527, 371);</span>
+<span class="nc" id="L61">		contentPane = new JPanel();</span>
+<span class="nc" id="L62">		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L63">		setContentPane(contentPane);</span>
+<span class="nc" id="L64">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L66">		JLabel izena = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Name&quot;));</span>
+<span class="nc" id="L67">		izena.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L68">		izena.setBounds(29, 21, 46, 14);</span>
+<span class="nc" id="L69">		contentPane.add(izena);</span>
+		
+<span class="nc" id="L71">		JLabel abizena = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Surname&quot;));</span>
+<span class="nc" id="L72">		abizena.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L73">		abizena.setBounds(29, 51, 71, 14);</span>
+<span class="nc" id="L74">		contentPane.add(abizena);</span>
+		
+<span class="nc" id="L76">		JLabel adina = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Age&quot;));</span>
+<span class="nc" id="L77">		adina.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L78">		adina.setBounds(29, 81, 46, 14);</span>
+<span class="nc" id="L79">		contentPane.add(adina);</span>
+		
+<span class="nc" id="L81">		JLabel posta = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Email&quot;));</span>
+<span class="nc" id="L82">		posta.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L83">		posta.setBounds(29, 111, 46, 14);</span>
+<span class="nc" id="L84">		contentPane.add(posta);</span>
+		
+<span class="nc" id="L86">		JLabel pasahitza = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Password&quot;));</span>
+<span class="nc" id="L87">		pasahitza.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L88">		pasahitza.setBounds(29, 163, 71, 14);</span>
+<span class="nc" id="L89">		contentPane.add(pasahitza);</span>
+		
+<span class="nc" id="L91">		izenaField = new JTextField();</span>
+<span class="nc" id="L92">		izenaField.setBounds(207, 18, 135, 20);</span>
+<span class="nc" id="L93">		contentPane.add(izenaField);</span>
+<span class="nc" id="L94">		izenaField.setColumns(10);</span>
+		
+<span class="nc" id="L96">		abizenaField = new JTextField();</span>
+<span class="nc" id="L97">		abizenaField.setColumns(10);</span>
+<span class="nc" id="L98">		abizenaField.setBounds(207, 48, 135, 20);</span>
+<span class="nc" id="L99">		contentPane.add(abizenaField);</span>
+		
+<span class="nc" id="L101">		adinaField = new JTextField();</span>
+<span class="nc" id="L102">		adinaField.setColumns(10);</span>
+<span class="nc" id="L103">		adinaField.setBounds(207, 78, 135, 20);</span>
+<span class="nc" id="L104">		contentPane.add(adinaField);</span>
+		
+<span class="nc" id="L106">		postaField = new JTextField();</span>
+<span class="nc" id="L107">		postaField.setColumns(10);</span>
+<span class="nc" id="L108">		postaField.setBounds(207, 108, 176, 20);</span>
+<span class="nc" id="L109">		contentPane.add(postaField);</span>
+		
+<span class="nc" id="L111">		JButton erregistratuBt = new JButton(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Registred&quot;));</span>
+<span class="nc" id="L112">		erregistratuBt.setBounds(156, 232, 125, 31);</span>
+<span class="nc" id="L113">		contentPane.add(erregistratuBt);</span>
+<span class="nc" id="L114">		erregistratuBt.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L116">				erreg_actionPerformed(e);</span>
+<span class="nc" id="L117">			}</span>
+		});
+		
+<span class="nc" id="L120">		erroreLB = new JLabel(&quot;&quot;);</span>
+<span class="nc" id="L121">		erroreLB.setBounds(92, 279, 362, 20);</span>
+<span class="nc" id="L122">		contentPane.add(erroreLB);</span>
+		
+<span class="nc" id="L124">		pasahitzaField = new JPasswordField();</span>
+<span class="nc" id="L125">		pasahitzaField.setBounds(207, 160, 135, 20);</span>
+<span class="nc" id="L126">		contentPane.add(pasahitzaField);</span>
+		
+<span class="nc" id="L128">		passKonpField = new JPasswordField();</span>
+<span class="nc" id="L129">		passKonpField.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L130">		passKonpField.setBounds(207, 193, 135, 20);</span>
+<span class="nc" id="L131">		contentPane.add(passKonpField);</span>
+		
+<span class="nc" id="L133">		JLabel pasahitzaKonpLB = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Password&quot;));</span>
+<span class="nc" id="L134">		pasahitzaKonpLB.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L135">		pasahitzaKonpLB.setBounds(29, 193, 163, 20);</span>
+<span class="nc" id="L136">		contentPane.add(pasahitzaKonpLB);</span>
+		
+<span class="nc" id="L138">		JLabel postaKonpLB = new JLabel(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Email&quot;));</span>
+<span class="nc" id="L139">		postaKonpLB.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L140">		postaKonpLB.setBounds(29, 136, 125, 14);</span>
+<span class="nc" id="L141">		contentPane.add(postaKonpLB);</span>
+		
+<span class="nc" id="L143">		postaKonpField = new JTextField();</span>
+<span class="nc" id="L144">		postaKonpField.setBounds(207, 133, 176, 20);</span>
+<span class="nc" id="L145">		contentPane.add(postaKonpField);</span>
+<span class="nc" id="L146">		postaKonpField.setColumns(10);</span>
+<span class="nc" id="L147">	}</span>
+	private void erreg_actionPerformed(ActionEvent e) {
+		
+<span class="nc" id="L150">		BLFacade erregistroa = MainGUI.getBusinessLogic();</span>
+<span class="nc" id="L151">		erroreLB.setText(&quot;&quot;);</span>
+		
+<span class="nc" id="L153">		String pass = new String(pasahitzaField.getPassword());</span>
+<span class="nc" id="L154">		String passKonp = new String(passKonpField.getPassword());</span>
+<span class="nc" id="L155">		Erabiltzaile newUser = new Bezero(izenaField.getText(), abizenaField.getText(), Integer.valueOf(adinaField.getText()), postaField.getText(), pass);</span>
+		
+		int zenb;
+<span class="nc bnc" id="L158" title="All 4 branches missed.">		if(postaField.getText().contains(&quot;@mail.com&quot;) ==false || postaField.getText().contentEquals(postaKonpField.getText())== false) {</span>
+<span class="nc" id="L159">			erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EmailError&quot;));</span>
+		}
+<span class="nc bnc" id="L161" title="All 2 branches missed.">		else if(izenaField.getText().isEmpty()) {</span>
+<span class="nc" id="L162">			erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;NameError&quot;));</span>
+		}
+<span class="nc bnc" id="L164" title="All 2 branches missed.">		else if(abizenaField.getText().isEmpty()) {</span>
+<span class="nc" id="L165">			erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;SurnameError&quot;));</span>
+		}
+<span class="nc bnc" id="L167" title="All 2 branches missed.">		else if(Integer.valueOf(adinaField.getText())&lt;=18) {</span>
+<span class="nc" id="L168">			erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;Teen&quot;));</span>
+		}
+<span class="nc bnc" id="L170" title="All 2 branches missed.">		else if(pass.length()&lt;7) {</span>
+<span class="nc" id="L171">			erroreLB.setText(&quot;&quot;);</span>
+<span class="nc" id="L172">			erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PassError&quot;));</span>
+		}
+<span class="nc bnc" id="L174" title="All 2 branches missed.">		else if(pass.contentEquals(passKonp)==false){</span>
+<span class="nc" id="L175">			erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;PassError1&quot;));</span>
+		 }
+		
+		else {
+<span class="nc" id="L179">			zenb= erregistroa.storeUser(newUser);</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">			if (zenb==0) {</span>
+<span class="nc" id="L181">				LoginGUI frame = new LoginGUI();</span>
+<span class="nc" id="L182">				frame.setVisible(true);</span>
+<span class="nc" id="L183">				this.setVisible(false);</span>
+<span class="nc" id="L184">			}</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">			else if(zenb==1) {</span>
+<span class="nc" id="L186">				erroreLB.setText(ResourceBundle.getBundle(&quot;Etiquetas&quot;).getString(&quot;EmailExists&quot;));</span>
+			}
+		}					
+<span class="nc" id="L189">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
